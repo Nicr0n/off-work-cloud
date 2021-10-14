@@ -5,6 +5,7 @@
     <parent>
         <groupId>com.nicr0n</groupId>
         <artifactId>test</artifactId>
+        <version>0.1-DEMO</version>
     </parent>
     <groupId>com.nicr0n</groupId>
     <artifactId>test-provider</artifactId>
@@ -16,14 +17,6 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-        <!-- SpringCloud 微服务 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-
         <!-- SpringBoot Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,14 +42,5 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

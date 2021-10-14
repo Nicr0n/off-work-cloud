@@ -15,5 +15,6 @@
     </modules>
     <artifactId>test</artifactId>
     <packaging>pom</packaging>
+    <version>0.1-DEMO</version>
 
 </project>
