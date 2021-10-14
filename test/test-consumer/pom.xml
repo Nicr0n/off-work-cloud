@@ -2,25 +2,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <artifactId>off-work-cloud</artifactId>
         <groupId>com.nicr0n</groupId>
-        <version>0.1-DEMO</version>
+        <artifactId>test</artifactId>
     </parent>
-
-
     <groupId>com.nicr0n</groupId>
-    <artifactId>off-work-auth</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>off-work-auth</name>
-    <description>
-    </description>
-
+    <artifactId>test-consumer</artifactId>
+    <name>test-consumer</name>
+    <description>Demo project for Spring Boot</description>
     <properties>
     </properties>
-
     <dependencies>
+        <!-- SpringCloud 微服务 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
         <!-- SpringBoot Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -33,21 +33,25 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- nacos注册中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!-- nacos配置中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
