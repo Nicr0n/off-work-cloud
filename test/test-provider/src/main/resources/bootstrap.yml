@@ -1,8 +1,8 @@
 server:
-  port: 9001
+  port: 9000
 spring:
   application:
-    name: test-consumer #应用名
+    name: test-provider #应用名
   cloud:
     nacos:
       discovery:  #发现中心

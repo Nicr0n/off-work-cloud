@@ -24,6 +24,7 @@
         <spring-cloud-zookeeper.version>3.0.3</spring-cloud-zookeeper.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
         <spring-cloud-starter-alibaba.version>2021.1</spring-cloud-starter-alibaba.version>
+        <spring-cloud-ribbon.version>1.4.7.RELEASE</spring-cloud-ribbon.version>
     </properties>
 
     <dependencyManagement>
@@ -65,6 +66,14 @@
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
                 <version>${spring-cloud-starter-alibaba.version}</version>
             </dependency>
+
+            <!-- ribbon负载均衡 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-ribbon</artifactId>
+                <version>${spring-cloud-ribbon.version}</version>
+            </dependency>
+
 
             <!-- lombok -->
             <dependency>
