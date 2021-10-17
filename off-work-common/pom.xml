@@ -9,13 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <modules>
-        <module>test-provider</module>
-        <module>test-consumer</module>
-        <module>test-common</module>
-    </modules>
-    <artifactId>test</artifactId>
+    <artifactId>off-work-common</artifactId>
     <packaging>pom</packaging>
-    <version>0.1-DEMO</version>
+    <modules>
+        <module>off-work-common-core</module>
+        <module>off-work-common-auth-starter</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
 </project>

@@ -10,6 +10,8 @@
     <modules>
         <module>test</module>
         <module>off-work-auth</module>
+        <module>off-work-common</module>
+        <module>off-work-cloud-gateway</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -23,8 +25,9 @@
         <spring-boot.version>2.5.5</spring-boot.version>
         <spring-cloud-zookeeper.version>3.0.3</spring-cloud-zookeeper.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
-        <spring-cloud-starter-alibaba.version>2021.1</spring-cloud-starter-alibaba.version>
+        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <spring-cloud-ribbon.version>1.4.7.RELEASE</spring-cloud-ribbon.version>
+        <spring-security-oauth2.version>2.5.1.RELEASE</spring-security-oauth2.version>
     </properties>
 
     <dependencyManagement>
@@ -53,18 +56,19 @@
                 <scope>test</scope>
             </dependency>
 
-            <!-- nacos注册中心 -->
             <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-                <version>${spring-cloud-starter-alibaba.version}</version>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${spring-security-oauth2.version}</version>
             </dependency>
 
-            <!-- nacos配置中心 -->
+            <!-- spring-cloud-alibaba -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-                <version>${spring-cloud-starter-alibaba.version}</version>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- ribbon负载均衡 -->
@@ -93,6 +97,11 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>2.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nicr0n</groupId>
+                <artifactId>off-work-common-auth-starter</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -3,19 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>off-work-cloud</artifactId>
+        <artifactId>off-work-common</artifactId>
         <groupId>com.nicr0n</groupId>
         <version>0.1-DEMO</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <modules>
-        <module>test-provider</module>
-        <module>test-consumer</module>
-        <module>test-common</module>
-    </modules>
-    <artifactId>test</artifactId>
-    <packaging>pom</packaging>
-    <version>0.1-DEMO</version>
+    <artifactId>off-work-common-core</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
 </project>
