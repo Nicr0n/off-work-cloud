@@ -17,6 +17,7 @@
     </properties>
 
     <dependencies>
+        <!-- spring-security-oauth2依赖 -->
         <dependency>
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
