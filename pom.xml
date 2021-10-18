@@ -24,10 +24,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.5.5</spring-boot.version>
         <spring-cloud-zookeeper.version>3.0.3</spring-cloud-zookeeper.version>
-        <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <spring-cloud.version>2020.0.4</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <spring-cloud-ribbon.version>1.4.7.RELEASE</spring-cloud-ribbon.version>
         <spring-security-oauth2.version>2.5.1.RELEASE</spring-security-oauth2.version>
+        <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
+        <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
     </properties>
 
     <dependencyManagement>
@@ -44,22 +46,37 @@
             <!-- SpringBoot Web -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
+                <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
-            <!-- SpringBoot Test -->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <version>${spring-boot.version}</version>
-                <scope>test</scope>
+                <groupId>com.nicr0n</groupId>
+                <artifactId>off-work-common-auth-starter</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
+            <!-- spring-cloud-security -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-security</artifactId>
+                <version>${spring-cloud-security.version}</version>
+            </dependency>
+
+            <!-- spring-security-oauth2 -->
             <dependency>
                 <groupId>org.springframework.security.oauth</groupId>
                 <artifactId>spring-security-oauth2</artifactId>
                 <version>${spring-security-oauth2.version}</version>
+            </dependency>
+
+            <!-- spring-cloud-starter-oauth2 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-oauth2</artifactId>
+                <version>${spring-cloud-starter-oauth2.version}</version>
             </dependency>
 
             <!-- spring-cloud-alibaba -->

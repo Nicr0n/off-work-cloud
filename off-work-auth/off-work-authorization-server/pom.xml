@@ -5,29 +5,32 @@
     <parent>
         <artifactId>off-work-auth</artifactId>
         <groupId>com.nicr0n</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.1-DEMO</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>off-work-authorization-server</artifactId>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
-        <!-- spring-security-oauth2依赖 -->
         <dependency>
             <groupId>com.nicr0n</groupId>
             <artifactId>off-work-common-auth-starter</artifactId>
-            <version>0.1-DEMO</version>
         </dependency>
 
         <!-- SpringBoot Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- SpringBoot actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <!-- SpringBoot Test -->
