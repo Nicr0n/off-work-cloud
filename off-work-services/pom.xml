@@ -3,13 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>off-work-common</artifactId>
+        <artifactId>off-work-cloud</artifactId>
         <groupId>com.nicr0n</groupId>
         <version>0.1-DEMO</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>off-work-common-core</artifactId>
+    <artifactId>off-work-services</artifactId>
+    <packaging>pom</packaging>
+    <description>
+        下班云服务中心
+    </description>
+    <modules>
+        <module>off-work-service-user</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,11 +24,13 @@
     </properties>
 
     <dependencies>
-        <!-- mybatis-starter -->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <groupId>com.nicr0n</groupId>
+            <artifactId>off-work-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nicr0n</groupId>
+            <artifactId>off-work-swagger-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
-
 </project>

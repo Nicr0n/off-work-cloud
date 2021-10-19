@@ -12,7 +12,7 @@
         <module>off-work-auth</module>
         <module>off-work-common</module>
         <module>off-work-cloud-gateway</module>
-        <module>off-work-admin</module>
+        <module>off-work-services</module>
         <module>off-work-mbg</module>
     </modules>
     <packaging>pom</packaging>
@@ -32,7 +32,9 @@
         <spring-security-oauth2.version>2.5.1.RELEASE</spring-security-oauth2.version>
         <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
         <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
+        <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <druid.version>1.2.8</druid.version>
+        <knife4j.version>2.0.9</knife4j.version>
     </properties>
 
     <dependencies>
@@ -75,12 +77,6 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>com.nicr0n</groupId>
-                <artifactId>off-work-common-auth-starter</artifactId>
-                <version>${project.version}</version>
             </dependency>
 
             <!-- spring-cloud-security -->
@@ -135,6 +131,12 @@
                 <version>${spring-cloud-ribbon.version}</version>
             </dependency>
 
+            <!-- mybatis-starter -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
 
             <!-- lombok -->
             <dependency>
@@ -144,17 +146,39 @@
                 <scope>provided</scope>
             </dependency>
 
-            <!--Swagger2 - RESTful API文档-->
+
+            <!-- swagger文档 -->
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>2.9.2</version>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
             </dependency>
+
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>2.9.2</version>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-micro-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
             </dependency>
+
+            <!-- 自定义依赖 -->
+            <dependency>
+                <groupId>com.nicr0n</groupId>
+                <artifactId>off-work-common-auth-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.nicr0n</groupId>
+                <artifactId>off-work-swagger-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.nicr0n</groupId>
+                <artifactId>off-work-common-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.nicr0n</groupId>
                 <artifactId>off-work-common-auth-starter</artifactId>

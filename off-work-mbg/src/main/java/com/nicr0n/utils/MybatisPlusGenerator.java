@@ -25,7 +25,6 @@ public class MybatisPlusGenerator {
                         .fileOverride()
                         .enableSwagger()
                         .commentDate("yyyy/MM/dd HH:mm")
-                        .outputDir("")
                 )
                 // 包配置
                 .packageConfig((scanner, builder) -> builder.parent(scanner.apply("请输入包名？")))
