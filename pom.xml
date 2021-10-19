@@ -12,6 +12,8 @@
         <module>off-work-auth</module>
         <module>off-work-common</module>
         <module>off-work-cloud-gateway</module>
+        <module>off-work-admin</module>
+        <module>off-work-mbg</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -30,7 +32,30 @@
         <spring-security-oauth2.version>2.5.1.RELEASE</spring-security-oauth2.version>
         <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
         <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
+        <druid.version>1.2.8</druid.version>
     </properties>
+
+    <dependencies>
+
+        <!-- SpringBoot test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!-- SpringCloud Boostrap依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -87,6 +112,21 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- druid数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- postgresql JDBC连接 -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.2.24</version>
+            </dependency>
+
 
             <!-- ribbon负载均衡 -->
             <dependency>

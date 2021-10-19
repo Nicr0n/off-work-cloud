@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/system?&ssl=false
+    username: offWorkCloud
+    password: 123456
+    driver-class-name: org.postgresql.Driver
