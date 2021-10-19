@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>off-work-cloud-gateway</artifactId>
+    <artifactId>off-work-gateway</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

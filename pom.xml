@@ -11,9 +11,9 @@
         <module>test</module>
         <module>off-work-auth</module>
         <module>off-work-common</module>
-        <module>off-work-cloud-gateway</module>
         <module>off-work-services</module>
         <module>off-work-mbg</module>
+        <module>off-work-gateway</module>
     </modules>
     <packaging>pom</packaging>
 
