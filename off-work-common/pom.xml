@@ -15,6 +15,7 @@
         <module>off-work-common-core</module>
         <module>off-work-common-auth-starter</module>
         <module>off-work-swagger-spring-boot-starter</module>
+        <module>off-work-db-spring-boot-starter</module>
     </modules>
 
     <properties>

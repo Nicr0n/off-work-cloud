@@ -34,7 +34,7 @@ public class SysPosition implements Serializable {
     private Long positionId;
 
     @ApiModelProperty("职位名称")
-    @TableId(value = "name", type = IdType.AUTO)
+    @TableField("name")
     private String name;
 
     @ApiModelProperty("职位权限code")

@@ -34,7 +34,7 @@ public class SysMenu implements Serializable {
     private Long menuId;
 
     @ApiModelProperty("菜单名称")
-    @TableId(value = "name", type = IdType.AUTO)
+    @TableField("name")
     private String name;
 
     @ApiModelProperty("父菜单ID")

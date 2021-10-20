@@ -34,7 +34,7 @@ public class SysDepartment implements Serializable {
     private Long departmentId;
 
     @ApiModelProperty("父部门ID")
-    @TableId(value = "parent_id", type = IdType.AUTO)
+    @TableField("parent_id")
     private Long parentId;
 
     @ApiModelProperty("部门名称")

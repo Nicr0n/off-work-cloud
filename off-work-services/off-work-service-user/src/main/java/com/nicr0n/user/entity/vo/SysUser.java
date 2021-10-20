@@ -35,7 +35,7 @@ public class SysUser implements Serializable {
     private Long userId;
 
     @ApiModelProperty("用户名")
-    @TableId(value = "username", type = IdType.AUTO)
+    @TableField(value = "username")
     private String username;
 
     @ApiModelProperty("密码")

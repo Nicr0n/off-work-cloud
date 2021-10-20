@@ -1,6 +1,7 @@
 package com.nicr0n.user.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
@@ -26,11 +27,11 @@ public class SysUserRole implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("用户ID")
-    @TableId(value = "user_id", type = IdType.AUTO)
+    @TableField(value = "user_id")
     private Long userId;
 
     @ApiModelProperty("角色ID")
-    @TableId(value = "role_id", type = IdType.AUTO)
+    @TableField(value = "role_id")
     private Long roleId;
 
 

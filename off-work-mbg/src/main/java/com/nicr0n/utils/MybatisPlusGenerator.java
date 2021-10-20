@@ -44,7 +44,6 @@ public class MybatisPlusGenerator {
                         .enableLombok() // 启用lombok
                         .enableTableFieldAnnotation()   // 开启数据库备注注释生成
                         .logicDeleteColumnName("delete_flag")   // 设置逻辑删除字段
-                        .idType(IdType.AUTO)
                         .addTableFills(
                                 new Column("create_time", FieldFill.INSERT)
                         ).addTableFills(
