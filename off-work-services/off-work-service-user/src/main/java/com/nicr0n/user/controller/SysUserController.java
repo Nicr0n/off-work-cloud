@@ -1,6 +1,7 @@
 package com.nicr0n.user.controller;
 
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021/10/19 13:32
  */
 @RestController
-@RequestMapping("/sys-user")
+@RequestMapping("/system/user")
+@Api(tags = "用户中心")
 public class SysUserController {
+
 
 }
 

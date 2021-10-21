@@ -1,5 +1,6 @@
 package com.nicr0n.user.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.nicr0n.user.entity.vo.SysUser;
 import com.nicr0n.user.mapper.SysUserDao;
 import com.nicr0n.user.service.SysUserService;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author Nicr0n
@@ -17,4 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implements SysUserService {
 
+    @Override
+    public SysUser getUserByUserName(String username) {
+        SysUser user = this.getOne(new QueryWrapper<SysUser>()
+                .eq("username", username)
+        );
+        return null;
+    }
 }
