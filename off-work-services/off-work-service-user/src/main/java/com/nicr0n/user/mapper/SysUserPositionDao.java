@@ -1,6 +1,6 @@
 package com.nicr0n.user.mapper;
 
-import com.nicr0n.user.entity.vo.SysUserPosition;
+import com.nicr0n.user.entity.po.SysUserPosition;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

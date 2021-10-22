@@ -1,4 +1,4 @@
-package com.nicr0n.user.entity.vo;
+package com.nicr0n.user.entity.po;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;

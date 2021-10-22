@@ -1,4 +1,4 @@
-package com.nicr0n.user.entity.vo;
+package com.nicr0n.user.entity.po;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -6,9 +6,13 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
+
+import com.nicr0n.db.handler.TimestamptzTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -16,7 +20,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Nicr0n
@@ -24,7 +28,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("sys_user")
+//重要 TableName注解必须增加 autoResultMap = true 否则无法处理typeHandler
+@TableName(value = "sys_user", autoResultMap = true)
 @ApiModel(value = "SysUser对象", description = "")
 public class SysUser implements Serializable {
 
@@ -80,7 +85,7 @@ public class SysUser implements Serializable {
 
     @ApiModelProperty("删除标志(true删除 false未删除)")
     @TableField("delete_flag")
-    @TableLogic
+    @TableLogic(value = "false", delval = "true")
     private Boolean deleteFlag;
 
     @ApiModelProperty("上次登录IP地址")
@@ -89,10 +94,10 @@ public class SysUser implements Serializable {
 
     @ApiModelProperty("上次登录时间")
     @TableField("last_login_time")
-    private LocalDateTime lastLoginTime;
+    private Date lastLoginTime;
 
     @ApiModelProperty("创建时间")
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @TableField(value = "create_time", fill = FieldFill.INSERT, typeHandler = TimestamptzTypeHandler.class)
     private LocalDateTime createTime;
 
     @ApiModelProperty("创建人ID")
@@ -100,7 +105,7 @@ public class SysUser implements Serializable {
     private Long createBy;
 
     @ApiModelProperty("修改时间")
-    @TableField(value = "update_time", fill = FieldFill.UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE, typeHandler = TimestamptzTypeHandler.class)
     private LocalDateTime updateTime;
 
     @ApiModelProperty("修改人ID")

@@ -1,6 +1,6 @@
 package com.nicr0n.user.service;
 
-import com.nicr0n.user.entity.vo.SysUser;
+import com.nicr0n.user.entity.po.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SysUserService extends IService<SysUser> {
 
-    SysUser getUserByUserName(String username);
+    SysUser getUserByUsername(String username);
 }

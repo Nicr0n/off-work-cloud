@@ -1,4 +1,4 @@
-package com.nicr0n.user.entity.vo;
+package com.nicr0n.user.entity.po;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -23,41 +23,37 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("sys_department")
-@ApiModel(value = "SysDepartment对象", description = "")
-public class SysDepartment implements Serializable {
+@TableName("sys_role")
+@ApiModel(value = "SysRole对象", description = "")
+public class SysRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("部门ID")
-    @TableId(value = "department_id", type = IdType.AUTO)
-    private Long departmentId;
+    @ApiModelProperty("角色ID")
+    @TableId(value = "role_id", type = IdType.AUTO)
+    private Long roleId;
 
-    @ApiModelProperty("父部门ID")
-    @TableField("parent_id")
-    private Long parentId;
-
-    @ApiModelProperty("部门名称")
-    @TableField("name")
+    @ApiModelProperty("角色名称")
+    @TableField(value = "name")
     private String name;
 
-    @ApiModelProperty("部门排序")
+    @ApiModelProperty("角色权限code")
+    @TableField("code")
+    private String code;
+
+    @ApiModelProperty("角色排序")
     @TableField("sort")
     private Integer sort;
 
-    @ApiModelProperty("负责人")
-    @TableField("principle")
-    private String principle;
+    @ApiModelProperty("角色数据作用域")
+    @TableField("scope")
+    private Integer scope;
 
-    @ApiModelProperty("电话号码")
-    @TableField("telephone")
-    private String telephone;
+    @ApiModelProperty("角色描述")
+    @TableField("description")
+    private String description;
 
-    @ApiModelProperty("邮箱地址")
-    @TableField("email")
-    private String email;
-
-    @ApiModelProperty("部门状态(0正常 1停用)")
+    @ApiModelProperty("角色状态（0正常 1停用)")
     @TableField("status")
     private Integer status;
 
@@ -70,15 +66,15 @@ public class SysDepartment implements Serializable {
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @ApiModelProperty("创建时间")
-    @TableField(value = "update_time", fill = FieldFill.UPDATE)
-    private LocalDateTime updateTime;
-
-    @ApiModelProperty("创建人ID")
+    @ApiModelProperty("创建人ID((为NULL则是系统创建))")
     @TableField("create_by")
     private Long createBy;
 
-    @ApiModelProperty("修改人ID")
+    @ApiModelProperty("修改时间")
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
+    private LocalDateTime updateTime;
+
+    @ApiModelProperty("修改人ID(为NULL则是系统创建)")
     @TableField("update_by")
     private Long updateBy;
 

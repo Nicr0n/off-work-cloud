@@ -1,6 +1,6 @@
 package com.nicr0n.user.service;
 
-import com.nicr0n.user.entity.vo.SysPosition;
+import com.nicr0n.user.entity.po.SysPosition;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

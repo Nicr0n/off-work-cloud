@@ -1,6 +1,6 @@
 package com.nicr0n.user.service.impl;
 
-import com.nicr0n.user.entity.vo.SysUserPosition;
+import com.nicr0n.user.entity.po.SysUserPosition;
 import com.nicr0n.user.mapper.SysUserPositionDao;
 import com.nicr0n.user.service.SysUserPositionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

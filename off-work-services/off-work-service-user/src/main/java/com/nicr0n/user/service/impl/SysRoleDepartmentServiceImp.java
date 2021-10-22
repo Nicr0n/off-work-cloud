@@ -1,6 +1,6 @@
 package com.nicr0n.user.service.impl;
 
-import com.nicr0n.user.entity.vo.SysRoleDepartment;
+import com.nicr0n.user.entity.po.SysRoleDepartment;
 import com.nicr0n.user.mapper.SysRoleDepartmentDao;
 import com.nicr0n.user.service.SysRoleDepartmentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
