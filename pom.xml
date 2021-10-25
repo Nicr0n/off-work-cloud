@@ -131,10 +131,16 @@
                 <version>${spring-cloud-ribbon.version}</version>
             </dependency>
 
-            <!-- mybatis-starter -->
+            <!-- mybatis-plus依赖 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
 
@@ -188,6 +194,12 @@
             <dependency>
                 <groupId>com.nicr0n</groupId>
                 <artifactId>off-work-common-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.nicr0n</groupId>
+                <artifactId>off-work-feign-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

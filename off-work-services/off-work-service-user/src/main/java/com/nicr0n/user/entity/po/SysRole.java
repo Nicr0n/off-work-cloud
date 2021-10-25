@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.nicr0n.db.handler.TimestamptzTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -23,7 +25,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("sys_role")
+//重要 TableName注解必须增加 autoResultMap = true 否则无法处理typeHandler
+@TableName(value = "sys_role",autoResultMap = true)
 @ApiModel(value = "SysRole对象", description = "")
 public class SysRole implements Serializable {
 
@@ -59,11 +62,11 @@ public class SysRole implements Serializable {
 
     @ApiModelProperty("删除标志(true删除 false未删除)")
     @TableField("delete_flag")
-    @TableLogic
+    @TableLogic(value = "false",delval = "true")
     private Boolean deleteFlag;
 
     @ApiModelProperty("创建时间")
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @TableField(value = "create_time", fill = FieldFill.INSERT,typeHandler = TimestamptzTypeHandler.class)
     private LocalDateTime createTime;
 
     @ApiModelProperty("创建人ID((为NULL则是系统创建))")
@@ -71,7 +74,7 @@ public class SysRole implements Serializable {
     private Long createBy;
 
     @ApiModelProperty("修改时间")
-    @TableField(value = "update_time", fill = FieldFill.UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE,typeHandler = TimestamptzTypeHandler.class)
     private LocalDateTime updateTime;
 
     @ApiModelProperty("修改人ID(为NULL则是系统创建)")

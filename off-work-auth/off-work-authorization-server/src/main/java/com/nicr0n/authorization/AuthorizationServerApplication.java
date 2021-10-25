@@ -3,6 +3,7 @@ package com.nicr0n.authorization;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author: Nicr0n
@@ -11,6 +12,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 // 启动服务发现
 @EnableDiscoveryClient
+// 开启feign服务调用
+@EnableFeignClients
 
 @SpringBootApplication
 public class AuthorizationServerApplication {
