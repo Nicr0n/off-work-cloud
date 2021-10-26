@@ -1,15 +1,20 @@
 package com.nicr0n.authorization.test;
 
 import com.nicr0n.authorization.service.feign.UserService;
+import com.nicr0n.authorization.utils.SecurityUtil;
+import com.nicr0n.feign.entity.po.SysRole;
 import com.nicr0n.feign.entity.po.SysUser;
 import com.nicr0n.swagger.entity.vo.Result;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author: Nicr0n
@@ -25,7 +30,19 @@ public class TestController {
     UserService userService;
 
     @GetMapping("/getUserByUsername")
-    Result<SysUser> getUserByUserName(@RequestParam String username){
+    Result<SysUser> getUserByUserName(@RequestParam String username) {
         return userService.getUserByUserName(username);
+    }
+
+    @GetMapping("/getRoleByUserIDs")
+    Result<List<SysRole>> getRolesByUserID(@RequestParam Long id) {
+        return userService.getRolesByUserID(id);
+    }
+
+    @ApiOperation(value = "获取当前登录用混信息")
+    @GetMapping("/currentUserInfo")
+    public Result<Authentication> getCurrentUser() {
+        log.debug("get current login user");
+        return Result.judgeObject(SecurityUtil.getCurrentUser());
     }
 }

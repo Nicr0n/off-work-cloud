@@ -11,11 +11,11 @@ import org.springframework.security.core.userdetails.User;
  */
 public class SecurityUtil {
 
-    public static User getCurrentUser(){
+    public static Authentication getCurrentUser(){
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null){
             System.out.println("当前登录状态过期");
         }
-        return (User) authentication.getPrincipal();
+        return authentication;
     }
 }

@@ -1,7 +1,11 @@
 package com.nicr0n.user.mapper;
 
+import com.nicr0n.user.entity.po.SysRole;
 import com.nicr0n.user.entity.po.SysUserRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +16,4 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2021/10/19 13:32
  */
 public interface SysUserRoleDao extends BaseMapper<SysUserRole> {
-
 }

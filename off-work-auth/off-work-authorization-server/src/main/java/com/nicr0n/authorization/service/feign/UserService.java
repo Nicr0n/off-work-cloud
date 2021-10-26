@@ -1,12 +1,15 @@
 package com.nicr0n.authorization.service.feign;
 
 import com.nicr0n.feign.constants.FeignConstants;
+import com.nicr0n.feign.entity.po.SysRole;
 import com.nicr0n.feign.entity.po.SysUser;
 import com.nicr0n.swagger.entity.vo.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @author: Nicr0n
@@ -25,4 +28,7 @@ public interface UserService {
      */
     @GetMapping("/getUserByUsername")
     Result<SysUser> getUserByUserName(@RequestParam("username") String username);
+
+    @GetMapping("/getRoleByUserIDs")
+    Result<List<SysRole>> getRolesByUserID(@RequestParam("id") Long id);
 }
