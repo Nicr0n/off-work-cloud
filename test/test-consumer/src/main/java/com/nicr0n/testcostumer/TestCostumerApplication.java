@@ -4,11 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
-//启用服务发现
+// 启用服务发现
 @EnableDiscoveryClient
-//启用openFeign服务调用
+// 启用openFeign服务调用
 @EnableFeignClients
+// 资源服务器
+@EnableResourceServer
 
 @SpringBootApplication
 public class TestCostumerApplication {

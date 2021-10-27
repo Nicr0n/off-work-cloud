@@ -32,6 +32,11 @@
             <artifactId>spring-cloud-loadbalancer</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.nicr0n</groupId>
+            <artifactId>off-work-common-auth-starter</artifactId>
+        </dependency>
+
 
         <!-- nacos注册中心 -->
         <dependency>

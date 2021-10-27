@@ -39,7 +39,7 @@ public class TestController {
         return userService.getRolesByUserID(id);
     }
 
-    @ApiOperation(value = "获取当前登录用混信息")
+    @ApiOperation(value = "获取当前登录用户信息")
     @GetMapping("/currentUserInfo")
     public Result<Authentication> getCurrentUser() {
         log.debug("get current login user");
