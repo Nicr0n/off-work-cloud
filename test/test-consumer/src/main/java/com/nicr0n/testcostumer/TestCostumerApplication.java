@@ -10,8 +10,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableDiscoveryClient
 // 启用openFeign服务调用
 @EnableFeignClients
-// 资源服务器
-@EnableResourceServer
 
 @SpringBootApplication
 public class TestCostumerApplication {
