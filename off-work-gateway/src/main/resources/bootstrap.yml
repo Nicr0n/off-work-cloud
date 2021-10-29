@@ -1,5 +1,5 @@
 server:
-  port: 6666
+  port: 7757
 spring:
   application:
     name: gateway #应用名
