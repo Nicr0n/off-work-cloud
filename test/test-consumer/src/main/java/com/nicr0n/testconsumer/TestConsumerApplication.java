@@ -1,10 +1,9 @@
-package com.nicr0n.testcostumer;
+package com.nicr0n.testconsumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 // 启用服务发现
 @EnableDiscoveryClient
@@ -12,10 +11,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableFeignClients
 
 @SpringBootApplication
-public class TestCostumerApplication {
+public class TestConsumerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TestCostumerApplication.class, args);
+        SpringApplication.run(TestConsumerApplication.class, args);
     }
 
 }

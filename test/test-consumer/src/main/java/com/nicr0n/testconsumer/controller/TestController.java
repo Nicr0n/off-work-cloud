@@ -1,6 +1,6 @@
-package com.nicr0n.testcostumer.controller;
+package com.nicr0n.testconsumer.controller;
 
-import com.nicr0n.testcostumer.service.TestService;
+import com.nicr0n.testconsumer.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;

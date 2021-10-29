@@ -1,4 +1,4 @@
-package com.nicr0n.testcostumer.service;
+package com.nicr0n.testconsumer.service;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
