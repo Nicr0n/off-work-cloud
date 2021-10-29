@@ -2,7 +2,7 @@ server:
   port: 6666
 spring:
   application:
-    name: gateway-web #应用名
+    name: gateway #应用名
   cloud:
     nacos:
       discovery:  #发现中心
