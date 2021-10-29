@@ -15,9 +15,11 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 // 启动资源服务器
 @EnableResourceServer
 public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
+    private static final String RESOURCE_ID = "test";
+
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        super.configure(resources);
+        resources.resourceId(RESOURCE_ID).stateless(true);
     }
 
     @Override
