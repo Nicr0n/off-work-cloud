@@ -17,7 +17,7 @@ import java.util.List;
  * @email: Nicr0nFF@gmail.com
  */
 @FeignClient(name = FeignConstants.USER_SERVICE)
-@RequestMapping("/system/user")
+@RequestMapping("/api/admin/system/user")
 public interface UserService {
 
     /**
