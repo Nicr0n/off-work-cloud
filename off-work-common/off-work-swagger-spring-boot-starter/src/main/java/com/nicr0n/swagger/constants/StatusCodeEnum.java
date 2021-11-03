@@ -1,4 +1,4 @@
-package com.nicr0n.swagger.entity;
+package com.nicr0n.swagger.constants;
 
 import lombok.Getter;
 

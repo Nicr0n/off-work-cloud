@@ -1,6 +1,6 @@
 package com.nicr0n.swagger.entity.vo;
 
-import com.nicr0n.swagger.entity.StatusCodeEnum;
+import com.nicr0n.swagger.constants.StatusCodeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

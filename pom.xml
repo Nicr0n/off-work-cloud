@@ -71,7 +71,7 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- SpringBoot Web -->
+            <!-- SpringBoot 依赖，一定要放到dependencyManagement中，起到管理版本的作用即可 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
