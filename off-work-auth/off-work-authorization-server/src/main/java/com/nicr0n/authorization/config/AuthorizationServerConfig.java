@@ -1,5 +1,6 @@
 package com.nicr0n.authorization.config;
 
+import com.nicr0n.authorization.token.CustomTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +21,16 @@ import org.springframework.security.oauth2.provider.code.AuthorizationCodeTokenG
 import org.springframework.security.oauth2.provider.code.RedisAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.password.ResourceOwnerPasswordTokenGranter;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -53,7 +58,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     UserDetailsService userDetailsService;
 
     /**
-     * 用户验证信息的保存策略，可以保存在关系型数据库中，redis中
+     * 用户验证信息的保存策略，可以保存在关系型数据库中，redis中，jwt中
      *
      * @return
      */
@@ -62,7 +67,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // 保存在数据库中
 //        return new JdbcTokenStore(dataSource);
         // 保存在redis中
-        return new RedisTokenStore(redisConnectionFactory);
+//        return new RedisTokenStore(redisConnectionFactory);
+        // 以jwt形式保存
+        return new JwtTokenStore(accessTokenConverter());
     }
 
     /**
@@ -108,7 +115,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .authorizationCodeServices(authorizationCodeServices())
                 // 配置grant_type模式，如果不配置则默认使用密码模式、简化模式、验证码模式以及刷新token模式，如果配置了只使用配置中，默认配置失效
                 // 具体可以查询AuthorizationServerEndpointsConfigurer中的getDefaultTokenGranters方法
-                .tokenGranter(tokenGranter(endpoints));
+                .tokenGranter(tokenGranter(endpoints))
+                .tokenEnhancer(tokenEnhancerChain());
         // 配置TokenServices参数 可以考虑使用[DefaultTokenServices]，它使用随机值创建令牌
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setTokenStore(endpoints.getTokenStore());
@@ -144,5 +152,27 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // 授权码模式
         tokenGranterList.add(new AuthorizationCodeTokenGranter(endpoints.getTokenServices(),endpoints.getAuthorizationCodeServices(), endpoints.getClientDetailsService(), endpoints.getOAuth2RequestFactory()));
         return new CompositeTokenGranter(tokenGranterList);
+    }
+
+    /**
+     * jwt  token生成配置
+     * @return
+     */
+    @Bean
+    public JwtAccessTokenConverter accessTokenConverter(){
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("Nicron");
+        return converter;
+    }
+
+    /**
+     * 自定义jwt增强链
+     * @return
+     */
+    @Bean
+    public TokenEnhancerChain tokenEnhancerChain() {
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(new CustomTokenEnhancer(), accessTokenConverter()));
+        return tokenEnhancerChain;
     }
 }
