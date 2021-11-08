@@ -3,6 +3,7 @@ package com.nicr0n.authorization.config;
 import com.nicr0n.authorization.token.CustomTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -48,14 +49,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Autowired
-    RedisConnectionFactory redisConnectionFactory;
+    private RedisConnectionFactory redisConnectionFactory;
 
     @Autowired
     @Qualifier("customUserDetailService")
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
+
+    @Value("${spring.security.oauth2.jwt.signingKey}")
+    private String signingKey;
 
     /**
      * 用户验证信息的保存策略，可以保存在关系型数据库中，redis中，jwt中
@@ -161,7 +165,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("Nicron");
+        converter.setSigningKey(signingKey);
         return converter;
     }
 

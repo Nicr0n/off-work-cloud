@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @date: 2021/10/17  21:37
  * @email: Nicr0nFF@gmail.com
  */
-public class BCryptPasswordEncoderUtils {
+public class BCryptPasswordEncoderUtil {
 
 	private static BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
