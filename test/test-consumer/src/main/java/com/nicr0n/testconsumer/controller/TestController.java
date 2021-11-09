@@ -25,12 +25,12 @@ public class TestController {
     private String config;
 
     @GetMapping("/helloConfig")
-    public String helloConfig(){
+    public String helloConfig() {
         return config;
     }
 
     @GetMapping("/hi")
-    public String hiFeign(){
+    public String hiFeign() {
         return testService.hi("feign");
     }
 }

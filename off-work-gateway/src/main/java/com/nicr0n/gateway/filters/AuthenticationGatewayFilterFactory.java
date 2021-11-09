@@ -16,6 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class AuthenticationGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthenticationGatewayFilterFactory.Config> {
+
+
     public AuthenticationGatewayFilterFactory() {
         super(AuthenticationGatewayFilterFactory.Config.class);
         log.info("加载过滤器[Authentication]");
