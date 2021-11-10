@@ -1,9 +1,7 @@
-package com.nicr0n.swagger.Properties;
+package com.nicr0n.swagger.properties;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ import java.util.Map;
  * @email: Nicr0nFF@gmail.com
  */
 @Data
-@ConfigurationProperties("spring.swagger")
+@ConfigurationProperties("swagger")
 public class SwaggerProperties {
 
     private static final String DEFAULT_VALUE = "";
@@ -80,10 +78,6 @@ public class SwaggerProperties {
      */
     private Map<String, GroupInfo> groups = new LinkedHashMap<>();
 
-    /**
-     * 全局参数配置
-     */
-    private List<GlobalOperationParameter> globalOperationParameters;
     @Data
     @NoArgsConstructor
     public static class GroupInfo {
@@ -133,39 +127,7 @@ public class SwaggerProperties {
          */
         private List<String> excludePath = new ArrayList<>();
 
-        /**
-         * 分组里的全局参数
-         */
-        private List<GlobalOperationParameter> globalOperationParameters;
 
-    }
-
-    @Data
-    public static class GlobalOperationParameter{
-        /**
-         * 参数名*
-         */
-        private String name;
-
-        /**
-         * 描述信息
-         */
-        private String description;
-
-        /**
-         * 指定参数类型
-         */
-        private String modelRef;
-
-        /**
-         * 参数放在哪个地方:header,query,path,body.form
-         */
-        private String parameterType;
-
-        /**
-         * 参数是否必须传
-         */
-        private String required;
     }
 
     @Data

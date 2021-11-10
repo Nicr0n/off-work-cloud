@@ -7,7 +7,6 @@ import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import com.nicr0n.gateway.service.AuthenticationService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.core.Ordered;
@@ -20,6 +19,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.Date;
 
 /**
@@ -70,7 +70,7 @@ public class AuthenticationFilter implements Ordered, GatewayFilter {
         message.set("status_flag", false);
         message.set("code", HttpStatus.HTTP_UNAUTHORIZED);
         message.set("message", msg);
-        message.set("time", new Date().getTime());
+        message.set("time", Instant.now());
         DataBuffer buffer = response.bufferFactory().wrap(message.toString().getBytes(StandardCharsets.UTF_8));
 
         //指定编码
