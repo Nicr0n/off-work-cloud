@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "提供者测试")
 public class TestController {
 
-    @GetMapping("/hi")
+    @GetMapping("/hiProvider")
     public String hi(@RequestParam(value = "name", defaultValue = "Nicron", required = false) String name) {
         return "hi" + name;
     }

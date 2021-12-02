@@ -31,7 +31,7 @@ import java.util.function.Predicate;
  */
 @Configuration
 @EnableKnife4j
-@EnableSwagger2WebFlux
+@EnableSwagger2WebMvc
 // 如果在配置文件中配置了swagger.enable则启用自动配置，缺失开启
 @ConditionalOnProperty(name = "swagger.enable",matchIfMissing = true)
 @Slf4j

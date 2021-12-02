@@ -43,7 +43,7 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
         Set<String> routes = new HashSet<>();
         // 取出Spring Cloud Gateway中的route
         routeLocator.getRoutes().subscribe(route -> {
-            routes.add(route.getId());
+            routes.add(route.getUri().getHost());
         });
 
         routes.forEach(route -> {

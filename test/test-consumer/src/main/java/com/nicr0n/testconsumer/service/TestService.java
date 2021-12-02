@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("test-provider")
 public interface TestService {
 
-    @GetMapping("/hi")
+    @GetMapping("/hiProvider")
     String hi(@RequestParam(value = "name", defaultValue = "forezp", required = false) String name);
 }
