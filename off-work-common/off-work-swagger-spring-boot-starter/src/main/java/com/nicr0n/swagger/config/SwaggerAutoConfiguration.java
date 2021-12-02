@@ -15,6 +15,7 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.ApiSelectorBuilder;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import java.util.function.Predicate;
  */
 @Configuration
 @EnableKnife4j
-@EnableSwagger2WebMvc
+@EnableSwagger2WebFlux
 // 如果在配置文件中配置了swagger.enable则启用自动配置，缺失开启
 @ConditionalOnProperty(name = "swagger.enable",matchIfMissing = true)
 @Slf4j
