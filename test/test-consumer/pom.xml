@@ -7,7 +7,6 @@
         <artifactId>test</artifactId>
         <version>0.1-DEMO</version>
     </parent>
-    <groupId>com.nicr0n</groupId>
     <artifactId>test-consumer</artifactId>
     <name>test-consumer</name>
     <description>Demo project for Spring Boot</description>

@@ -26,7 +26,10 @@ public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 // 不需要授权认证的
-                .antMatchers("/hi")
+                .antMatchers("/hi",
+                        "/swagger-resources/**",
+                        "/v2/**",
+                        "/webjars/**")
                 .permitAll()
                 .and()
                 .authorizeRequests()
