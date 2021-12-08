@@ -32,7 +32,7 @@
         <spring-security-oauth2.version>2.5.1.RELEASE</spring-security-oauth2.version>
         <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
         <spring-cloud-security.version>2.2.5.RELEASE</spring-cloud-security.version>
-        <spring-security-oauth2-jose.version>5.6.0</spring-security-oauth2-jose.version>
+        <spring-security.version>5.6.0</spring-security.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <druid.version>1.2.8</druid.version>
         <knife4j.version>2.0.9</knife4j.version>
@@ -100,7 +100,7 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-oauth2-jose</artifactId>
-                <version>${spring-security-oauth2-jose.version}</version>
+                <version>${spring-security.version}</version>
             </dependency>
 
             <!-- spring-cloud-starter-oauth2 -->
@@ -108,6 +108,13 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-oauth2</artifactId>
                 <version>${spring-cloud-starter-oauth2.version}</version>
+            </dependency>
+
+            <!-- spring-security-config -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${spring-security.version}</version>
             </dependency>
 
             <!-- spring-cloud-alibaba -->
