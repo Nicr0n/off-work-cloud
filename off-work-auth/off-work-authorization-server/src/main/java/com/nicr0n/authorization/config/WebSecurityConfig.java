@@ -34,8 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(
-                        // 放行公钥接口
-                        "/oauth/publicKey")
+                        // 放行验证接口
+                        "/oauth/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

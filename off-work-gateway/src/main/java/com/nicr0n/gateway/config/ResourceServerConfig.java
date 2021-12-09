@@ -2,7 +2,6 @@ package com.nicr0n.gateway.config;
 
 import com.nicr0n.gateway.auth.AuthorizationManager;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -30,7 +29,7 @@ public class ResourceServerConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http){
         http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtConverter());
         http.authorizeExchange()
-                .pathMatchers("").permitAll()
+                .pathMatchers("/test").permitAll()
                 .anyExchange().access(authorizationManager);
         http.csrf().disable();
         return http.build();
@@ -38,9 +37,10 @@ public class ResourceServerConfig {
 
 
     @Bean
-    public Converter<Jwt,? extends Mono<?extends AbstractAuthenticationToken>> jwtConverter(){
+    public Converter<Jwt, ? extends Mono<? extends AbstractAuthenticationToken>> jwtConverter(){
         JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName("authorities");
+        jwtGrantedAuthoritiesConverter.setAuthorityPrefix("");
 
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);

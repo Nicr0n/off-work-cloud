@@ -9,14 +9,11 @@ import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.ReactiveAuthorizationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.web.server.authorization.AuthorizationContext;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -39,13 +36,6 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         if (request.getMethod()== HttpMethod.OPTIONS){
             return Mono.just(new AuthorizationDecision(true));
         }
-
-        authenticationMono.map(authentication -> {
-            Jwt principal = (Jwt) authentication.getPrincipal();
-            log.info("{}",principal);
-            return principal;
-        });
-
         // token为空直接拒绝
         String token = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
         if (StrUtil.isBlankIfStr(token)){
@@ -53,6 +43,8 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         }
 
         Set<String> authorities = new HashSet<>();
+//        测试临时权限
+        authorities.add("admin");
 
         Mono<AuthorizationDecision> authorizationDecisionMono = authenticationMono
                 // 过滤未验证
@@ -63,10 +55,11 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
                     log.info("访问路径：{}",path);
                     log.info("用户的角色id：{}",roleID);
                     log.info("资源需要的权限：{}",authorities);
+                    log.info("{}",authorities.contains(roleID));
                     return authorities.contains(roleID);
                 })
                 .map(AuthorizationDecision::new)
                 .defaultIfEmpty(new AuthorizationDecision(false));
-            return authorizationDecisionMono;
+                return authorizationDecisionMono;
     }
 }

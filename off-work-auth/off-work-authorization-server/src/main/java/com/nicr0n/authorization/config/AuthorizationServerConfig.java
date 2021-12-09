@@ -61,9 +61,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Qualifier("customUserDetailService")
     private UserDetailsService userDetailsService;
 
-    @Value("${spring.security.oauth2.jwt.signingKey}")
-    private String signingKey;
-
     /**
      * 用户验证信息的保存策略，可以保存在关系型数据库中，redis中，jwt中
      *
@@ -123,7 +120,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 // 配置grant_type模式，如果不配置则默认使用密码模式、简化模式、验证码模式以及刷新token模式，如果配置了只使用配置中，默认配置失效
                 // 具体可以查询AuthorizationServerEndpointsConfigurer中的getDefaultTokenGranters方法
                 .tokenGranter(tokenGranter(endpoints))
-                .tokenEnhancer(tokenEnhancerChain());
+                .tokenEnhancer(tokenEnhancerChain())
+                .accessTokenConverter(accessTokenConverter());
         // 配置TokenServices参数 可以考虑使用[DefaultTokenServices]，它使用随机值创建令牌
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setTokenStore(endpoints.getTokenStore());
