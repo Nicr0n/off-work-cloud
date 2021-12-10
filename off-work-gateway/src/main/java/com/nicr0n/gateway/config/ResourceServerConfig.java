@@ -29,7 +29,7 @@ public class ResourceServerConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http){
         http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtConverter());
         http.authorizeExchange()
-                .pathMatchers("/test").permitAll()
+                .pathMatchers("/").permitAll()
                 .anyExchange().access(authorizationManager);
         http.csrf().disable();
         return http.build();

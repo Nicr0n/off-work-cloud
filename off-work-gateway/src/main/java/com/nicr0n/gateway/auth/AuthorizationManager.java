@@ -55,7 +55,6 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
                     log.info("访问路径：{}",path);
                     log.info("用户的角色id：{}",roleID);
                     log.info("资源需要的权限：{}",authorities);
-                    log.info("{}",authorities.contains(roleID));
                     return authorities.contains(roleID);
                 })
                 .map(AuthorizationDecision::new)
