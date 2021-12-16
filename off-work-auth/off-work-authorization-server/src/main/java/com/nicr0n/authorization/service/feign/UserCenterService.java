@@ -16,9 +16,8 @@ import java.util.List;
  * @date: 2021/10/25    10:00
  * @email: Nicr0nFF@gmail.com
  */
-@FeignClient(name = FeignConstants.USER_SERVICE)
-@RequestMapping("/system/user")
-public interface UserService {
+@FeignClient(name = FeignConstants.USER_CENTER)
+public interface UserCenterService {
 
     /**
      * feign rpc访问远程/getUserByUsername接口
@@ -26,9 +25,11 @@ public interface UserService {
      * @param username 用户名
      * @return
      */
-    @GetMapping("/getUserByUsername")
+    @GetMapping("/system/user/byUsername")
     Result<SysUser> getUserByUserName(@RequestParam("username") String username);
 
-    @GetMapping("/getRoleByUserIDs")
+    @GetMapping("/system/role/byUserID")
     Result<List<SysRole>> getRolesByUserID(@RequestParam("id") Long id);
+
+
 }

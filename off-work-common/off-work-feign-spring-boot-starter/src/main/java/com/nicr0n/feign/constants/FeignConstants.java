@@ -11,5 +11,6 @@ public interface FeignConstants {
     /**
      * 用户中心
      */
-    String USER_SERVICE = "user-center";
+    String USER_CENTER = "user-center";
+
 }

@@ -1,12 +1,15 @@
 package com.nicr0n.user.controller;
 
 
+import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.swagger.entity.vo.Result;
 import com.nicr0n.user.entity.po.SysRole;
 import com.nicr0n.user.entity.po.SysUser;
+import com.nicr0n.user.entity.vo.SysUserListPage;
 import com.nicr0n.user.service.SysUserRoleService;
 import com.nicr0n.user.service.SysUserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,21 +37,26 @@ public class SysUserController {
     @Autowired
     SysUserService sysUserService;
 
-    @Autowired
-    SysUserRoleService sysUserRoleService;
+    @ApiOperation(value = "获取当前用户信息")
+    @GetMapping("/current")
+    public Result<SysUser> getCurrentUser(){
+        return Result.judgeObject(sysUserService.getCurrentUser());
+    }
 
     @ApiOperation(value = "按照用户名获取用户")
-    @GetMapping("/getUserByUsername")
+    @ApiImplicitParam(name = "username", value = "用户名", required = true)
+    @GetMapping("/byUsername")
     public Result<SysUser> getUserByUserName(@RequestParam String username) {
         log.debug("get user by username:{}", username);
         return Result.judgeObject(sysUserService.getUserByUsername(username));
     }
 
-    @ApiOperation(value = "按照用户ID获取角色列表")
-    @GetMapping("/getRoleByUserIDs")
-    public Result<List<SysRole>> getRolesByUserID(@RequestParam Long id) {
-        log.debug("get roles list by userID:{}", id);
-        return Result.judgeObject(sysUserRoleService.getRolesByUserID(id));
+    @ApiOperation("获取用户列表")
+    @GetMapping("/list")
+    public Result<SysUserListPage> getUserList(PageParam pageParam){
+        log.debug("get users page:{} perPage:{}",pageParam.getPage(),pageParam.getPerPage());
+        return Result.judgeObject(sysUserService.getUserList(pageParam));
     }
+
 }
 

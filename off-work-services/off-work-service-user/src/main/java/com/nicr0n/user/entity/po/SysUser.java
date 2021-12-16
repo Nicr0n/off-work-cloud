@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nicr0n.db.handler.TimestamptzTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -45,6 +46,8 @@ public class SysUser implements Serializable {
 
     @ApiModelProperty("密码")
     @TableField("password")
+    // 密码查询时忽略
+    @JsonIgnore
     private String password;
 
     @ApiModelProperty("手机号")

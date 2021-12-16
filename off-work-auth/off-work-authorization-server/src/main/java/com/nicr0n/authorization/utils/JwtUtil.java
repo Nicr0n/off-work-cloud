@@ -10,13 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
  * @email: Nicr0nFF@gmail.com
  */
 public class JwtUtil {
-    @Value("${spring.security.oauth2.jwt.signingKey}")
-    private String signingKey;
 
-    public Claims getTokenBody(String token){
-        return Jwts.parser()
-                .setSigningKey(signingKey)
-                .parseClaimsJws(token)
-                .getBody();
-    }
+
 }
