@@ -46,8 +46,6 @@ public class SysUser implements Serializable {
 
     @ApiModelProperty("密码")
     @TableField("password")
-    // 密码查询时忽略
-    @JsonIgnore
     private String password;
 
     @ApiModelProperty("手机号")

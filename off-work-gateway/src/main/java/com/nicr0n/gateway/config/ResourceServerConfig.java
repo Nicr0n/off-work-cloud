@@ -1,7 +1,10 @@
 package com.nicr0n.gateway.config;
 
+import cn.hutool.core.convert.Convert;
 import com.nicr0n.gateway.auth.AuthorizationManager;
 import lombok.AllArgsConstructor;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -14,6 +17,8 @@ import org.springframework.security.oauth2.server.resource.authentication.Reacti
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 /**
  * @author: Nicr0n
  * @date: 2021/12/8    15:43
@@ -21,15 +26,19 @@ import reactor.core.publisher.Mono;
  */
 @EnableWebFluxSecurity
 @AllArgsConstructor
+@ConfigurationProperties(prefix = "spring.security")
 public class ResourceServerConfig {
 
     private AuthorizationManager authorizationManager;
+
+    @Setter
+    private List<String> whiteList;
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http){
         http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtConverter());
         http.authorizeExchange()
-                .pathMatchers("/").permitAll()
+                .pathMatchers(Convert.toStrArray(whiteList)).permitAll()
                 .anyExchange().access(authorizationManager);
         http.csrf().disable();
         return http.build();

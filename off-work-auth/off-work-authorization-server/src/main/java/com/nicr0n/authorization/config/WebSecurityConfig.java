@@ -35,7 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(
                         // 放行验证接口
-                        "/oauth/**")
+                        "/oauth/**",
+                        "/swagger-resources/**",
+                        "/v2/**",
+                        "/webjars/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
