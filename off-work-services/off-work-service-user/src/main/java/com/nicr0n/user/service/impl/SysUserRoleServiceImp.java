@@ -1,8 +1,8 @@
 package com.nicr0n.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.nicr0n.user.entity.po.SysRole;
-import com.nicr0n.user.entity.po.SysUserRole;
+import com.nicr0n.user.entity.SysRole;
+import com.nicr0n.user.entity.SysUserRole;
 import com.nicr0n.user.mapper.SysUserRoleDao;
 import com.nicr0n.user.service.SysRoleService;
 import com.nicr0n.user.service.SysUserRoleService;
@@ -10,7 +10,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

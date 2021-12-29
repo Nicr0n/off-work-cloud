@@ -1,6 +1,6 @@
 package com.nicr0n.user.service;
 
-import com.nicr0n.user.entity.po.SysDepartment;
+import com.nicr0n.user.entity.SysDepartment;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

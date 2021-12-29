@@ -61,7 +61,20 @@ public class Result<T> {
         return new Result(
                 true,
                 StatusCodeEnum.REQUIRE_SUCCESS.getCode(),
-                StatusCodeEnum.REQUIRE_SUCCESS.getMessage()
+                message
+        );
+    }
+
+    /**
+     * 按照枚举类创建成功请求结果对象
+     * @param statusCodeEnum
+     * @return
+     */
+    public static Result success(StatusCodeEnum statusCodeEnum) {
+        return new Result(
+                true,
+                statusCodeEnum.getCode(),
+                statusCodeEnum.getMessage()
         );
     }
 
@@ -85,7 +98,24 @@ public class Result<T> {
      * @return Result
      */
     public static Result result() {
-        return success(null);
+        return new Result(
+                true,
+                StatusCodeEnum.REQUIRE_SUCCESS.getCode(),
+                StatusCodeEnum.REQUIRE_SUCCESS.getMessage()
+        );
+    }
+
+    /**
+     * 按照枚举类创建失败请求结果对象
+     * @param statusCodeEnum
+     * @return
+     */
+    public static Result fail(StatusCodeEnum statusCodeEnum) {
+        return new Result(
+                true,
+                statusCodeEnum.getCode(),
+                statusCodeEnum.getMessage()
+        );
     }
 
 
@@ -108,7 +138,11 @@ public class Result<T> {
      * @return Result
      */
     public static Result fail() {
-        return fail(null);
+        return new Result(
+                false,
+                StatusCodeEnum.REQUIRE_SUCCESS.getCode(),
+                StatusCodeEnum.REQUIRE_SUCCESS.getMessage()
+        );
     }
 
     /**

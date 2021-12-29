@@ -85,7 +85,7 @@ public class SwaggerAutoConfiguration {
 				}
 		);
 
-		ApiSelectorBuilder apiSelectorBuilder = new Docket(DocumentationType.SWAGGER_2)
+		ApiSelectorBuilder apiSelectorBuilder = new Docket(DocumentationType.SPRING_WEB)
 				.host(swaggerProperties.getHost())
 				.apiInfo(apiInfo)
 				.select()

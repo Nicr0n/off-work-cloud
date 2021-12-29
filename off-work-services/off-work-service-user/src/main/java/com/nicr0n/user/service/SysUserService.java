@@ -1,11 +1,10 @@
 package com.nicr0n.user.service;
 
 import com.nicr0n.swagger.entity.vo.PageParam;
-import com.nicr0n.user.entity.po.SysUser;
+import com.nicr0n.user.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.nicr0n.user.entity.po.SysUserUpdateDTO;
 import com.nicr0n.user.entity.vo.SysUserListPage;
-
-import java.util.List;
 
 /**
  * <p>
@@ -22,4 +21,6 @@ public interface SysUserService extends IService<SysUser> {
     SysUser getCurrentUser();
 
     SysUserListPage getUserList(PageParam pageParam);
+
+    boolean updateByUserID(Long id, SysUserUpdateDTO sysUserUpdateDTO);
 }

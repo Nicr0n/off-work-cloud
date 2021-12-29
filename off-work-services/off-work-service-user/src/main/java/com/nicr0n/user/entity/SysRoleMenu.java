@@ -1,4 +1,4 @@
-package com.nicr0n.user.entity.po;
+package com.nicr0n.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -18,19 +18,19 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("sys_user_role")
-@ApiModel(value = "SysUserRole对象", description = "")
-public class SysUserRole implements Serializable {
+@TableName("sys_role_menu")
+@ApiModel(value = "SysRoleMenu对象", description = "")
+public class SysRoleMenu implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty("用户ID")
-    @TableField(value = "user_id")
-    private Long userId;
 
     @ApiModelProperty("角色ID")
     @TableField(value = "role_id")
     private Long roleId;
+
+    @ApiModelProperty("菜单ID")
+    @TableField(value = "menu_id")
+    private Long menuId;
 
 
 }

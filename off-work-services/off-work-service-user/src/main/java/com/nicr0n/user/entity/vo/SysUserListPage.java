@@ -1,6 +1,6 @@
 package com.nicr0n.user.entity.vo;
 
-import com.nicr0n.user.entity.po.SysUser;
+import com.nicr0n.user.entity.SysUser;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

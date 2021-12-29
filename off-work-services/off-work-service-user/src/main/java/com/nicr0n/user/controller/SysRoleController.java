@@ -2,7 +2,7 @@ package com.nicr0n.user.controller;
 
 
 import com.nicr0n.swagger.entity.vo.Result;
-import com.nicr0n.user.entity.po.SysRole;
+import com.nicr0n.user.entity.SysRole;
 import com.nicr0n.user.service.SysRoleService;
 import com.nicr0n.user.service.SysUserRoleService;
 import io.swagger.annotations.Api;

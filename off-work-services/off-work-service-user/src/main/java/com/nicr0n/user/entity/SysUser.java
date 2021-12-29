@@ -1,4 +1,4 @@
-package com.nicr0n.user.entity.po;
+package com.nicr0n.user.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -18,6 +18,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * <p>
@@ -56,6 +57,14 @@ public class SysUser implements Serializable {
     @TableField("open_id")
     private String openId;
 
+    @ApiModelProperty("部门ID")
+    @TableField("department_id")
+    private Integer departmentId;
+
+    @ApiModelProperty("职位ID")
+    @TableField("position_id")
+    private Integer positionId;
+
     @ApiModelProperty("昵称")
     @TableField("nick_name")
     private String nickName;
@@ -78,6 +87,7 @@ public class SysUser implements Serializable {
 
     @ApiModelProperty("生日")
     @TableField("birthday")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
     @ApiModelProperty("账户状态（0正常 1停用)")
