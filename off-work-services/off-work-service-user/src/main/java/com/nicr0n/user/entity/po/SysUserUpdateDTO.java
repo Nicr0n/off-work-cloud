@@ -20,6 +20,14 @@ import java.util.List;
 @ApiModel(value = "用户修改DTO")
 public class SysUserUpdateDTO {
 
+    @ApiModelProperty("部门ID")
+    @TableField("department_id")
+    private Integer departmentId;
+
+    @ApiModelProperty("职位ID")
+    @TableField("position_id")
+    private Integer positionId;
+
     @ApiModelProperty("昵称")
     @TableField("nick_name")
     private String nickName;
