@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.nicr0n.db.config.MybatisPlusConfig,\
+  com.nicr0n.db.handler.MyMetaObjectHandler
+

@@ -41,4 +41,14 @@ public class SysUserRoleServiceImp extends ServiceImpl<SysUserRoleDao, SysUserRo
         // 按照ID列表查询role
         return roleService.listByIds(roleIDList);
     }
+
+    @Override
+    public boolean deleteUserRolesByUserID(Long userID) {
+        return this.remove(new QueryWrapper<SysUserRole>().eq("user_id", userID));
+    }
+
+    @Override
+    public boolean deleteUserRolesByUserIDSelective(Long userID, List<Long> roleIDList) {
+        return this.remove(new QueryWrapper<SysUserRole>().eq("user_id", userID).in("role_id", roleIDList));
+    }
 }

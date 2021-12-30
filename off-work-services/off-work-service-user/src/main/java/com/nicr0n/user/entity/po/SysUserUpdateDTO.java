@@ -54,5 +54,5 @@ public class SysUserUpdateDTO {
     private LocalDate birthday;
 
     @ApiModelProperty("角色ID列表")
-    private List<Integer> roleIDList;
+    private List<Long> roleIDList;
 }
