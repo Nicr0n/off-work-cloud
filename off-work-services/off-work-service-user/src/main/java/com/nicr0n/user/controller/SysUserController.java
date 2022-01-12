@@ -5,6 +5,7 @@ import com.nicr0n.swagger.constants.StatusCodeEnum;
 import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.swagger.entity.vo.Result;
 import com.nicr0n.user.entity.SysUser;
+import com.nicr0n.user.entity.po.RegisterDTO;
 import com.nicr0n.user.entity.po.SysUserUpdateDTO;
 import com.nicr0n.user.entity.vo.SysUserListPage;
 import com.nicr0n.user.service.SysUserService;
@@ -13,7 +14,10 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * <p>
@@ -54,22 +58,27 @@ public class SysUserController {
     }
 
     @ApiOperation("根据ID获取用户信息")
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Result<SysUser> getUserByID(@PathVariable Long id){
         log.debug("get user by userID:{}",id);
         return Result.judgeObject(sysUserService.getById(id));
     }
 
     @ApiOperation("根据ID修改用户信息")
-    @PutMapping("{id}")
-    public Result<SysUser> getUserByID(@PathVariable Long id,@RequestBody SysUserUpdateDTO sysUserUpdateDTO){
+    @PutMapping("/{id}")
+    public Result updateUserByID(@PathVariable Long id,@RequestBody SysUserUpdateDTO sysUserUpdateDTO){
         log.debug("get user by userID:{}",id);
         if (sysUserService.updateByUserID(id,sysUserUpdateDTO)){
             return Result.success(StatusCodeEnum.UPDATE_SUCCESS);
         }else {
             return Result.fail(StatusCodeEnum.UPDATE_FAILED);
         }
+    }
 
+    @PostMapping("/register")
+    public Result register(@RequestBody @Valid RegisterDTO registerDTO){
+        log.debug("register a new user｝");
+        return Result.judge(sysUserService.register(registerDTO),"注册");
     }
 
 }

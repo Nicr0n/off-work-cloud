@@ -44,6 +44,19 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- SpringBoot validation -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- spring security加密工具 -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>5.6.1</version>
+        </dependency>
+
         <!-- nacos注册中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

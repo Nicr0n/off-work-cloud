@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.user.entity.SysUser;
 import com.nicr0n.user.entity.SysUserRole;
+import com.nicr0n.user.entity.po.RegisterDTO;
 import com.nicr0n.user.entity.po.SysUserUpdateDTO;
 import com.nicr0n.user.entity.vo.SysUserListPage;
 import com.nicr0n.user.mapper.SysUserDao;
@@ -15,6 +16,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -32,54 +35,64 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implements SysUserService {
 
-    @Resource
-    SysUserDao userDao;
+	@Resource
+	SysUserDao userDao;
 
-    private final SysUserRoleService sysUserRoleService;
+	private final SysUserRoleService sysUserRoleService;
 
-    @Override
-    public SysUser getUserByUsername(String username) {
-        SysUser user = this.getOne(new QueryWrapper<SysUser>()
-                .eq("username", username)
-        );
-        return user;
-    }
+	@Override
+	public SysUser getUserByUsername(String username) {
+		SysUser user = this.getOne(new QueryWrapper<SysUser>()
+				.eq("username", username)
+		);
+		return user;
+	}
 
-    @Override
-    public SysUser getCurrentUser() {
-        return null;
-    }
+	@Override
+	public SysUser getCurrentUser() {
+		return null;
+	}
 
-    @Override
-    public SysUserListPage getUserList(PageParam pageParam) {
-        // 构造分页类
-        Page<SysUser> sysUserPage = new Page<>(pageParam.getPage(), pageParam.getPerPage());
-        // 分页查询
-        this.page(sysUserPage);
+	@Override
+	public SysUserListPage getUserList(PageParam pageParam) {
+		// 构造分页类
+		Page<SysUser> sysUserPage = new Page<>(pageParam.getPage(), pageParam.getPerPage());
+		// 分页查询
+		this.page(sysUserPage);
 
-        return new SysUserListPage(sysUserPage.getRecords(), sysUserPage.getTotal());
-    }
+		return new SysUserListPage(sysUserPage.getRecords(), sysUserPage.getTotal());
+	}
 
-    @Override
-    public boolean updateByUserID(Long id, SysUserUpdateDTO sysUserUpdateDTO) {
-        // 拷贝属性
-        SysUser sysUser = new SysUser();
-        BeanUtils.copyProperties(sysUserUpdateDTO, sysUser);
-        sysUser.setUserId(id);
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public boolean updateByUserID(Long id, SysUserUpdateDTO sysUserUpdateDTO) {
+		// 拷贝属性
+		SysUser sysUser = new SysUser();
+		BeanUtils.copyProperties(sysUserUpdateDTO, sysUser);
+		sysUser.setUserId(id);
 
-        // 角色ID列表不为空
-        if (CollectionUtil.isNotEmpty(sysUserUpdateDTO.getRoleIDList())) {
-            // 删除原来的用户-角色映射关系
-            sysUserRoleService.deleteUserRolesByUserID(id);
+		// 角色ID列表不为空
+		if (CollectionUtil.isNotEmpty(sysUserUpdateDTO.getRoleIDList())) {
+			// 删除原来的用户-角色映射关系
+			sysUserRoleService.deleteUserRolesByUserID(id);
 
-            // 新增角色关系
-            List<SysUserRole> sysUserRoleList = new ArrayList<>();
-            sysUserUpdateDTO.getRoleIDList().forEach(roleID -> {
-                sysUserRoleList.add(new SysUserRole(id, roleID));
-            });
-            sysUserRoleService.saveBatch(sysUserRoleList);
-        }
+			// 新增角色关系
+			List<SysUserRole> sysUserRoleList = new ArrayList<>();
+			sysUserUpdateDTO.getRoleIDList().forEach(roleID -> {
+				sysUserRoleList.add(new SysUserRole(id, roleID));
+			});
+			sysUserRoleService.saveBatch(sysUserRoleList);
+		}
 
-        return this.updateById(sysUser);
-    }
+		return this.updateById(sysUser);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public Boolean register(RegisterDTO registerDTO) {
+		SysUser sysUser = new SysUser();
+		BeanUtils.copyProperties(registerDTO, sysUser);
+		sysUser.setPassword(new BCryptPasswordEncoder().encode(registerDTO.getPassword()));
+		return this.save(sysUser);
+	}
 }
