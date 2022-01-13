@@ -1,20 +1,19 @@
 package com.nicr0n.user.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nicr0n.swagger.constants.StatusCodeEnum;
 import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.swagger.entity.vo.Result;
 import com.nicr0n.user.entity.SysUser;
 import com.nicr0n.user.entity.po.RegisterDTO;
 import com.nicr0n.user.entity.po.SysUserUpdateDTO;
-import com.nicr0n.user.entity.vo.SysUserListPage;
 import com.nicr0n.user.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -52,7 +51,7 @@ public class SysUserController {
 
     @ApiOperation("获取用户列表")
     @GetMapping("/list")
-    public Result<SysUserListPage> getUserList(PageParam pageParam){
+    public Result<Page<SysUser>> getUserList(PageParam pageParam){
         log.debug("get users page:{} perPage:{}",pageParam.getPage(),pageParam.getPerPage());
         return Result.judgeObject(sysUserService.getUserList(pageParam));
     }

@@ -1,11 +1,11 @@
 package com.nicr0n.user.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.user.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.nicr0n.user.entity.po.RegisterDTO;
 import com.nicr0n.user.entity.po.SysUserUpdateDTO;
-import com.nicr0n.user.entity.vo.SysUserListPage;
 
 /**
  * <p>
@@ -21,7 +21,7 @@ public interface SysUserService extends IService<SysUser> {
 
     SysUser getCurrentUser();
 
-    SysUserListPage getUserList(PageParam pageParam);
+    Page<SysUser> getUserList(PageParam pageParam);
 
     boolean updateByUserID(Long id, SysUserUpdateDTO sysUserUpdateDTO);
 

@@ -8,7 +8,6 @@ import com.nicr0n.user.entity.SysUser;
 import com.nicr0n.user.entity.SysUserRole;
 import com.nicr0n.user.entity.po.RegisterDTO;
 import com.nicr0n.user.entity.po.SysUserUpdateDTO;
-import com.nicr0n.user.entity.vo.SysUserListPage;
 import com.nicr0n.user.mapper.SysUserDao;
 import com.nicr0n.user.service.SysUserRoleService;
 import com.nicr0n.user.service.SysUserService;
@@ -38,7 +37,7 @@ public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implemen
 	@Resource
 	SysUserDao userDao;
 
-	private final SysUserRoleService sysUserRoleService;
+	private final SysUserRoleService userRoleService;
 
 	@Override
 	public SysUser getUserByUsername(String username) {
@@ -54,13 +53,12 @@ public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implemen
 	}
 
 	@Override
-	public SysUserListPage getUserList(PageParam pageParam) {
+	public Page<SysUser> getUserList(PageParam pageParam) {
 		// 构造分页类
 		Page<SysUser> sysUserPage = new Page<>(pageParam.getPage(), pageParam.getPerPage());
 		// 分页查询
 		this.page(sysUserPage);
-
-		return new SysUserListPage(sysUserPage.getRecords(), sysUserPage.getTotal());
+		return sysUserPage;
 	}
 
 	@Override
@@ -74,14 +72,14 @@ public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implemen
 		// 角色ID列表不为空
 		if (CollectionUtil.isNotEmpty(sysUserUpdateDTO.getRoleIDList())) {
 			// 删除原来的用户-角色映射关系
-			sysUserRoleService.deleteUserRolesByUserID(id);
+			userRoleService.deleteUserRolesByUserID(id);
 
 			// 新增角色关系
 			List<SysUserRole> sysUserRoleList = new ArrayList<>();
 			sysUserUpdateDTO.getRoleIDList().forEach(roleID -> {
 				sysUserRoleList.add(new SysUserRole(id, roleID));
 			});
-			sysUserRoleService.saveBatch(sysUserRoleList);
+			userRoleService.saveBatch(sysUserRoleList);
 		}
 
 		return this.updateById(sysUser);
