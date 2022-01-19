@@ -28,7 +28,7 @@ import java.util.List;
  * @since 2021/10/19 13:32
  */
 @RestController
-@RequestMapping("/system/role")
+@RequestMapping("/api/system/role")
 @Api(tags = "角色管理")
 @Slf4j
 public class SysRoleController {
@@ -56,9 +56,13 @@ public class SysRoleController {
 
 	@ApiOperation(value = "按照ID获取角色详情")
 	@GetMapping("/{id}")
-	public Result<SysRoleVO> getRoleByID(@PathVariable Long id) {
+	public Result<SysRoleVO> getRoleByRoleID(@PathVariable Long id) {
 		log.debug("get role by id:{}", id);
 		return Result.judgeObject(roleService.getRoleByID(id));
 	}
+
+	@ApiOperation(value = "修改角色信息")
+	@PutMapping("/{id}")
+	public Result updateRoleByRoleID(@PathVariable Long id,@RequestBody )
 }
 

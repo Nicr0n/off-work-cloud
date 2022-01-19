@@ -23,7 +23,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("sys_department")
+@TableName(value = "sys_department",autoResultMap = true)
 @ApiModel(value = "SysDepartment对象", description = "")
 public class SysDepartment implements Serializable {
 
@@ -63,7 +63,7 @@ public class SysDepartment implements Serializable {
 
     @ApiModelProperty("删除标志(true删除 false未删除)")
     @TableField("delete_flag")
-    @TableLogic
+    @TableLogic(value = "false",delval = "true")
     private Boolean deleteFlag;
 
     @ApiModelProperty("创建时间")

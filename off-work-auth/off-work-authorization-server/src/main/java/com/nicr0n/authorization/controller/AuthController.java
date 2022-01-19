@@ -47,11 +47,11 @@ public class AuthController {
 			@ApiImplicitParam(name = "client_secret", value = "Oauth客户端秘钥", required = true)
 	})
 	@PostMapping("/token")
-	public Result<OAuth2AccessToken> postAccessToken(@ApiIgnore Principal principal,
-													 @RequestParam  @ApiIgnore Map<String, String> parameters)
+	public OAuth2AccessToken postAccessToken(@ApiIgnore Principal principal,
+											 @RequestParam @ApiIgnore Map<String, String> parameters)
 			throws HttpRequestMethodNotSupportedException {
 		OAuth2AccessToken accessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
-		return Result.success(accessToken);
+		return accessToken;
 	}
 
 	@GetMapping("/publicKey")
