@@ -17,4 +17,6 @@ import java.util.List;
 public interface SysRoleMenuService extends IService<SysRoleMenu> {
 
 	List<SysMenu> getMenuListByRoleID(Long id);
+
+    boolean deleteRoleMenuByRoleID(Long roleID);
 }

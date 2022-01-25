@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.user.entity.SysRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.nicr0n.user.entity.po.SysRoleAddDTO;
+import com.nicr0n.user.entity.po.SysRoleUpdateDTO;
 import com.nicr0n.user.entity.vo.SysRoleVO;
 
 /**
@@ -18,4 +20,8 @@ public interface SysRoleService extends IService<SysRole> {
 	Page<SysRole> getRolesPage(PageParam pageParam);
 
 	SysRoleVO getRoleByID(Long id);
+
+    Boolean updateRoleByRoleID(Long roleID, SysRoleUpdateDTO sysRoleUpdateDTO);
+
+	Boolean addRole(SysRoleAddDTO sysRoleAddDTO);
 }

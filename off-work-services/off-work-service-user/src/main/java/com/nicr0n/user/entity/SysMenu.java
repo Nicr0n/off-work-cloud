@@ -76,10 +76,6 @@ public class SysMenu implements Serializable {
 	@TableField("status")
 	private Integer status;
 
-	@ApiModelProperty("菜单权限")
-	@TableField("permission")
-	private String permission;
-
 	@ApiModelProperty("图标")
 	@TableField("icon")
 	private String icon;

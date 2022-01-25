@@ -24,19 +24,24 @@ import java.util.stream.Collectors;
 @Service
 public class SysRoleMenuServiceImp extends ServiceImpl<SysRoleMenuDao, SysRoleMenu> implements SysRoleMenuService {
 
-	@Resource
-	SysRoleMenuDao roleMenuDao;
+    @Resource
+    SysRoleMenuDao roleMenuDao;
 
-	@Resource
-	SysMenuDao menuDao;
+    @Resource
+    SysMenuDao menuDao;
 
-	@Override
-	public List<SysMenu> getMenuListByRoleID(Long id) {
-		// 查询角色与菜单的关联
-		List<SysRoleMenu> roleMenuList = roleMenuDao.selectList(new QueryWrapper<SysRoleMenu>().eq("role_id", id));
-		// 获取角色对应的菜单ID List
-		List<Long> menuIDList = roleMenuList.stream().map(SysRoleMenu::getMenuId).collect(Collectors.toList());
-		// 按照ID列表查询菜单
-		return menuDao.selectBatchIds(menuIDList);
-	}
+    @Override
+    public List<SysMenu> getMenuListByRoleID(Long id) {
+        // 查询角色与菜单的关联
+        List<SysRoleMenu> roleMenuList = roleMenuDao.selectList(new QueryWrapper<SysRoleMenu>().eq("role_id", id));
+        // 获取角色对应的菜单ID List
+        List<Long> menuIDList = roleMenuList.stream().map(SysRoleMenu::getMenuId).collect(Collectors.toList());
+        // 按照ID列表查询菜单
+        return menuDao.selectBatchIds(menuIDList);
+    }
+
+    @Override
+    public boolean deleteRoleMenuByRoleID(Long roleID) {
+        return this.remove(new QueryWrapper<SysRoleMenu>().eq("role_id", roleID));
+    }
 }

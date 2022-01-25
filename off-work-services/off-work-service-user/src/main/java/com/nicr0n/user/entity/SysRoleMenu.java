@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,7 @@ import lombok.Setter;
 @Setter
 @TableName("sys_role_menu")
 @ApiModel(value = "SysRoleMenu对象", description = "")
+@AllArgsConstructor
 public class SysRoleMenu implements Serializable {
 
     private static final long serialVersionUID = 1L;
