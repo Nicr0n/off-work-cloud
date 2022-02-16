@@ -89,7 +89,7 @@ public class SysMenu implements Serializable {
 	private Long createBy;
 
 	@ApiModelProperty("修改时间")
-	@TableField(value = "update_time", fill = FieldFill.UPDATE, typeHandler = TimestamptzTypeHandler.class)
+	@TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE, typeHandler = TimestamptzTypeHandler.class)
 	private LocalDateTime updateTime;
 
 	@ApiModelProperty("修改人ID")

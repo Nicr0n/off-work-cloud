@@ -5,10 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.swagger.entity.vo.Result;
 import com.nicr0n.user.entity.SysRole;
-import com.nicr0n.user.entity.po.SysRoleAddDTO;
-import com.nicr0n.user.entity.po.SysRoleUpdateDTO;
+import com.nicr0n.user.entity.po.SysRoleDTO;
 import com.nicr0n.user.entity.vo.SysRoleVO;
-import com.nicr0n.user.service.SysRoleMenuService;
 import com.nicr0n.user.service.SysRoleService;
 import com.nicr0n.user.service.SysUserRoleService;
 import io.swagger.annotations.Api;
@@ -65,16 +63,16 @@ public class SysRoleController {
 
 	@ApiOperation(value = "修改角色信息")
 	@PutMapping("/{id}")
-	public Result updateRoleByRoleID(@PathVariable Long id, @RequestBody SysRoleUpdateDTO sysRoleUpdateDTO){
+	public Result updateRoleByRoleID(@PathVariable Long id, @RequestBody SysRoleDTO sysRoleDTO){
 		log.debug("update role by id:{}",id);
-		return Result.judge(roleService.updateRoleByRoleID(id,sysRoleUpdateDTO),"修改角色信息");
+		return Result.judge(roleService.updateRoleByRoleID(id,sysRoleDTO),"修改角色信息");
 	}
 
 	@ApiOperation(value = "修改角色信息")
 	@PostMapping
-	public Result addRole(@RequestBody SysRoleAddDTO sysRoleAddDTO){
+	public Result addRole(@RequestBody SysRoleDTO sysRoleDTO){
 		log.debug("add new role");
-		return Result.judge(roleService.addRole(sysRoleAddDTO),"新增角色");
+		return Result.judge(roleService.addRole(sysRoleDTO),"新增角色");
 	}
 }
 

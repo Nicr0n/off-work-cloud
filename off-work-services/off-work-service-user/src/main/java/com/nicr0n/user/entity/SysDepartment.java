@@ -71,7 +71,7 @@ public class SysDepartment implements Serializable {
     private LocalDateTime createTime;
 
     @ApiModelProperty("创建时间")
-    @TableField(value = "update_time", fill = FieldFill.UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     @ApiModelProperty("创建人ID")

@@ -7,7 +7,7 @@ import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.user.entity.SysUser;
 import com.nicr0n.user.entity.SysUserRole;
 import com.nicr0n.user.entity.po.RegisterDTO;
-import com.nicr0n.user.entity.po.SysUserUpdateDTO;
+import com.nicr0n.user.entity.po.SysUserDTO;
 import com.nicr0n.user.mapper.SysUserDao;
 import com.nicr0n.user.service.SysUserRoleService;
 import com.nicr0n.user.service.SysUserService;
@@ -63,20 +63,20 @@ public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implemen
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public boolean updateByUserID(Long id, SysUserUpdateDTO sysUserUpdateDTO) {
+	public boolean updateByUserID(Long id, SysUserDTO sysUserDTO) {
 		// 拷贝属性
 		SysUser sysUser = new SysUser();
-		BeanUtils.copyProperties(sysUserUpdateDTO, sysUser);
+		BeanUtils.copyProperties(sysUserDTO, sysUser);
 		sysUser.setUserId(id);
 
 		// 角色ID列表不为空
-		if (CollectionUtil.isNotEmpty(sysUserUpdateDTO.getRoleIDList())) {
+		if (CollectionUtil.isNotEmpty(sysUserDTO.getRoleIDList())) {
 			// 删除原来的用户-角色映射关系
 			userRoleService.deleteUserRolesByUserID(id);
 
 			// 新增角色关系
 			List<SysUserRole> sysUserRoleList = new ArrayList<>();
-			sysUserUpdateDTO.getRoleIDList().forEach(roleID -> {
+			sysUserDTO.getRoleIDList().forEach(roleID -> {
 				sysUserRoleList.add(new SysUserRole(id, roleID));
 			});
 			userRoleService.saveBatch(sysUserRoleList);

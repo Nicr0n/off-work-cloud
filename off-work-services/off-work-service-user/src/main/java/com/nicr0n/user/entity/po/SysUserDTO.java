@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @ApiModel(value = "用户修改DTO")
-public class SysUserUpdateDTO {
+public class SysUserDTO {
 
     @ApiModelProperty("部门ID")
     @TableField("department_id")

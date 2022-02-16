@@ -6,15 +6,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.user.entity.SysRole;
 import com.nicr0n.user.entity.SysRoleMenu;
-import com.nicr0n.user.entity.po.SysRoleAddDTO;
-import com.nicr0n.user.entity.po.SysRoleUpdateDTO;
+import com.nicr0n.user.entity.po.SysRoleDTO;
 import com.nicr0n.user.entity.vo.SysRoleVO;
 import com.nicr0n.user.mapper.SysRoleDao;
 import com.nicr0n.user.service.SysRoleMenuService;
 import com.nicr0n.user.service.SysRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -55,19 +53,19 @@ public class SysRoleServiceImp extends ServiceImpl<SysRoleDao, SysRole> implemen
 
     @Override
     @Transactional
-    public Boolean updateRoleByRoleID(Long roleID, SysRoleUpdateDTO sysRoleUpdateDTO) {
+    public Boolean updateRoleByRoleID(Long roleID, SysRoleDTO sysRoleDTO) {
         try {
             SysRole sysRole = new SysRole();
-            BeanUtils.copyProperties(sysRoleUpdateDTO, sysRole);
+            BeanUtils.copyProperties(sysRoleDTO, sysRole);
             sysRole.setRoleId(roleID);
             // 菜单ID列表不为空
-            if (CollectionUtil.isNotEmpty(sysRoleUpdateDTO.getMenuIdList())) {
+            if (CollectionUtil.isNotEmpty(sysRoleDTO.getMenuIdList())) {
                 // 删除原来的角色-菜单映射关系
                 roleMenuService.deleteRoleMenuByRoleID(roleID);
 
                 // 新增角色-菜单映射关系
                 List<SysRoleMenu> roleMenuList = new ArrayList<>();
-                sysRoleUpdateDTO.getMenuIdList().forEach(menuID -> {
+                sysRoleDTO.getMenuIdList().forEach(menuID -> {
                     roleMenuList.add(new SysRoleMenu(roleID, menuID));
                 });
                 roleMenuService.saveBatch(roleMenuList);
@@ -83,7 +81,7 @@ public class SysRoleServiceImp extends ServiceImpl<SysRoleDao, SysRole> implemen
 
     @Override
     @Transactional
-    public Boolean addRole(SysRoleAddDTO sysRoleAddDTO) {
+    public Boolean addRole(SysRoleDTO sysRoleAddDTO) {
         try {
             SysRole sysRole = new SysRole();
             BeanUtils.copyProperties(sysRoleAddDTO, sysRole);

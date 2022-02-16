@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.user.entity.SysResource;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.nicr0n.user.entity.po.SysResourceDTO;
 
 /**
  * <p>
@@ -16,4 +17,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface SysResourceService extends IService<SysResource> {
 
 	Page<SysResource> getResourcePage(PageParam pageParam);
+
+	Boolean addResource(SysResourceDTO sysResourceDTO);
+
+	Boolean updateResource(Long id, SysResourceDTO sysResourceDTO);
 }

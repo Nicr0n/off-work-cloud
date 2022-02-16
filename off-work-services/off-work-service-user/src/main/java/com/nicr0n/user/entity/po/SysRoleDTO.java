@@ -6,20 +6,22 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
  * @author: Nicr0n
- * @date: 2022/1/25    14:24
+ * @date: 2022/1/25    15:39
  * @email: Nicr0nFF@gmail.com
  */
 @Getter
 @Setter
 @ApiModel(value = "角色修改DTO")
-public class SysRoleUpdateDTO {
+public class SysRoleDTO {
 
     @ApiModelProperty("角色名称")
     @TableField(value = "name")
+    @NotBlank
     private String name;
 
     @ApiModelProperty("角色权限code")

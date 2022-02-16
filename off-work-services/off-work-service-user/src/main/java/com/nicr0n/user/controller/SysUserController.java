@@ -7,7 +7,7 @@ import com.nicr0n.swagger.entity.vo.PageParam;
 import com.nicr0n.swagger.entity.vo.Result;
 import com.nicr0n.user.entity.SysUser;
 import com.nicr0n.user.entity.po.RegisterDTO;
-import com.nicr0n.user.entity.po.SysUserUpdateDTO;
+import com.nicr0n.user.entity.po.SysUserDTO;
 import com.nicr0n.user.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -26,9 +26,9 @@ import javax.validation.Valid;
  * @author Nicr0n
  * @since 2021/10/19 13:32
  */
+@Api(tags = "用户管理")
 @RestController
 @RequestMapping("/api/system/user")
-@Api(tags = "用户管理")
 @Slf4j
 public class SysUserController {
 
@@ -65,9 +65,9 @@ public class SysUserController {
 
     @ApiOperation("根据ID修改用户信息")
     @PutMapping("/{id}")
-    public Result updateUserByID(@PathVariable Long id,@RequestBody SysUserUpdateDTO sysUserUpdateDTO){
+    public Result updateUserByID(@PathVariable Long id,@RequestBody SysUserDTO sysUserDTO){
         log.debug("get user by userID:{}",id);
-        if (sysUserService.updateByUserID(id,sysUserUpdateDTO)){
+        if (sysUserService.updateByUserID(id, sysUserDTO)){
             return Result.success(StatusCodeEnum.UPDATE_SUCCESS);
         }else {
             return Result.fail(StatusCodeEnum.UPDATE_FAILED);
