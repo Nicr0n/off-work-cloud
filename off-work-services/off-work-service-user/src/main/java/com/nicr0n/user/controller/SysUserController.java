@@ -50,10 +50,10 @@ public class SysUserController {
     }
 
     @ApiOperation("获取用户列表")
-    @GetMapping("/list")
-    public Result<Page<SysUser>> getUserList(PageParam pageParam){
+    @GetMapping("/page")
+    public Result<Page<SysUser>> getUserPage(PageParam pageParam){
         log.debug("get users page:{} perPage:{}",pageParam.getPage(),pageParam.getPerPage());
-        return Result.judgeObject(sysUserService.getUserList(pageParam));
+        return Result.judgeObject(sysUserService.getUserPage(pageParam));
     }
 
     @ApiOperation("根据ID获取用户信息")

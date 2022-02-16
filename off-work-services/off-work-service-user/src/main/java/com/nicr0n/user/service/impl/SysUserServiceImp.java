@@ -53,7 +53,7 @@ public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implemen
 	}
 
 	@Override
-	public Page<SysUser> getUserList(PageParam pageParam) {
+	public Page<SysUser> getUserPage(PageParam pageParam) {
 		// 构造分页类
 		Page<SysUser> sysUserPage = new Page<>(pageParam.getPage(), pageParam.getPerPage());
 		// 分页查询

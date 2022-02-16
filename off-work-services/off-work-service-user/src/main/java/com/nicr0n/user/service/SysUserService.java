@@ -21,7 +21,7 @@ public interface SysUserService extends IService<SysUser> {
 
     SysUser getCurrentUser();
 
-    Page<SysUser> getUserList(PageParam pageParam);
+    Page<SysUser> getUserPage(PageParam pageParam);
 
     boolean updateByUserID(Long id, SysUserUpdateDTO sysUserUpdateDTO);
 

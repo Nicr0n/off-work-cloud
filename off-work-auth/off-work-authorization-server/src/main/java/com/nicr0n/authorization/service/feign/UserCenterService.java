@@ -25,10 +25,10 @@ public interface UserCenterService {
      * @param username 用户名
      * @return
      */
-    @GetMapping("/system/user/byUsername")
+    @GetMapping("/api/system/user/byUsername")
     Result<SysUser> getUserByUserName(@RequestParam("username") String username);
 
-    @GetMapping("/system/role/byUserID")
+    @GetMapping("/api/system/role/byUserID")
     Result<List<SysRole>> getRolesByUserID(@RequestParam("id") Long id);
 
 

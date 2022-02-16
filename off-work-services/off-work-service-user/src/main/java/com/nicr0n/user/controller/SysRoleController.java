@@ -29,9 +29,9 @@ import java.util.List;
  * @author Nicr0n
  * @since 2021/10/19 13:32
  */
+@Api(tags = "角色管理")
 @RestController
 @RequestMapping("/api/system/role")
-@Api(tags = "角色管理")
 @Slf4j
 public class SysRoleController {
 
