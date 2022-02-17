@@ -1,5 +1,6 @@
 package com.nicr0n.authorization.config;
 
+import com.nicr0n.authorization.service.feign.UserCenterService;
 import com.nicr0n.authorization.token.CustomTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -60,6 +61,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     @Qualifier("customUserDetailService")
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private UserCenterService userCenterService;
 
     /**
      * 用户验证信息的保存策略，可以保存在关系型数据库中，redis中，jwt中
@@ -179,7 +183,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public TokenEnhancerChain tokenEnhancerChain() {
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(new CustomTokenEnhancer(), accessTokenConverter()));
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(new CustomTokenEnhancer(userCenterService), accessTokenConverter()));
         return tokenEnhancerChain;
     }
 

@@ -1,26 +1,30 @@
 package com.nicr0n.user.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.jwt.JWTUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nicr0n.swagger.entity.vo.PageParam;
+import com.nicr0n.user.entity.SysRole;
 import com.nicr0n.user.entity.SysUser;
 import com.nicr0n.user.entity.SysUserRole;
 import com.nicr0n.user.entity.po.RegisterDTO;
 import com.nicr0n.user.entity.po.SysUserDTO;
+import com.nicr0n.user.entity.vo.CurrentUserVO;
 import com.nicr0n.user.mapper.SysUserDao;
 import com.nicr0n.user.service.SysUserRoleService;
 import com.nicr0n.user.service.SysUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.nicr0n.user.utils.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -34,9 +38,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implements SysUserService {
 
-	@Resource
-	SysUserDao userDao;
-
 	private final SysUserRoleService userRoleService;
 
 	@Override
@@ -48,8 +49,17 @@ public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implemen
 	}
 
 	@Override
-	public SysUser getCurrentUser() {
-		return null;
+	public CurrentUserVO getCurrentUser() {
+		CurrentUserVO currentUserVO = new CurrentUserVO();
+		// 从jwt中获取用户ID
+		Long userID = SecurityUtils.getUserID();
+		if (userID == null) {
+			return null;
+		}
+		SysUser sysUser = this.getById(userID);
+		BeanUtils.copyProperties(sysUser, currentUserVO);
+		currentUserVO.setRoles(userRoleService.getRolesByUserID(userID).stream().map(SysRole::getName).collect(Collectors.toList()));
+		return currentUserVO;
 	}
 
 	@Override

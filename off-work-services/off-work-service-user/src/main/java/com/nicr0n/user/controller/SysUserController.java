@@ -8,6 +8,7 @@ import com.nicr0n.swagger.entity.vo.Result;
 import com.nicr0n.user.entity.SysUser;
 import com.nicr0n.user.entity.po.RegisterDTO;
 import com.nicr0n.user.entity.po.SysUserDTO;
+import com.nicr0n.user.entity.vo.CurrentUserVO;
 import com.nicr0n.user.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -37,7 +38,7 @@ public class SysUserController {
 
     @ApiOperation(value = "获取当前用户信息")
     @GetMapping("/current")
-    public Result<SysUser> getCurrentUser(){
+    public Result<CurrentUserVO> getCurrentUser(){
         return Result.judgeObject(sysUserService.getCurrentUser());
     }
 

@@ -6,6 +6,7 @@ import com.nicr0n.user.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.nicr0n.user.entity.po.RegisterDTO;
 import com.nicr0n.user.entity.po.SysUserDTO;
+import com.nicr0n.user.entity.vo.CurrentUserVO;
 
 /**
  * <p>
@@ -19,7 +20,7 @@ public interface SysUserService extends IService<SysUser> {
 
     SysUser getUserByUsername(String username);
 
-    SysUser getCurrentUser();
+	CurrentUserVO getCurrentUser();
 
     Page<SysUser> getUserPage(PageParam pageParam);
 
