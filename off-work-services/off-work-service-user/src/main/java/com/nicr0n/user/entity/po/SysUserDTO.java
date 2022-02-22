@@ -36,6 +36,10 @@ public class SysUserDTO {
     @TableField("name")
     private String name;
 
+    @ApiModelProperty("手机号")
+    @TableField("telephone")
+    private String telephone;
+
     @ApiModelProperty("头像url")
     @TableField("avatar_url")
     private String avatarUrl;
@@ -52,6 +56,10 @@ public class SysUserDTO {
     @TableField("birthday")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
+
+    @ApiModelProperty("账户状态（0正常 1停用)")
+    @TableField("status")
+    private Integer status;
 
     @ApiModelProperty("角色ID列表")
     private List<Long> roleIDList;

@@ -61,7 +61,7 @@ public class SysUserController {
     @GetMapping("/{id}")
     public Result<SysUser> getUserByID(@PathVariable Long id){
         log.debug("get user by userID:{}",id);
-        return Result.judgeObject(sysUserService.getById(id));
+        return Result.judgeObject(sysUserService.getUserByID(id));
     }
 
     @ApiOperation("根据ID修改用户信息")

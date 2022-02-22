@@ -47,6 +47,13 @@ public class SysRoleController {
 		return Result.judgeObject(userRoleService.getRolesByUserID(id));
 	}
 
+	@ApiOperation(value = "获取角色列表")
+	@GetMapping("/list")
+	public Result<List<SysRole>> getRolesList() {
+		log.debug("get roles list");
+		return Result.judgeObject(roleService.list());
+	}
+
 	@ApiOperation(value = "列表分页")
 	@GetMapping("/page")
 	public Result<Page<SysRole>> getRolesPage(@RequestParam @Valid PageParam pageParam) {

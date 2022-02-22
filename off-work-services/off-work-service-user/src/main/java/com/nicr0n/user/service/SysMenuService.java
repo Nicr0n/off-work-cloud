@@ -1,7 +1,10 @@
 package com.nicr0n.user.service;
 
-import com.nicr0n.user.entity.SysMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.nicr0n.user.entity.SysMenu;
+import com.nicr0n.user.entity.vo.RouteItemVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SysMenuService extends IService<SysMenu> {
 
+	List<RouteItemVO> getRouteList();
 }

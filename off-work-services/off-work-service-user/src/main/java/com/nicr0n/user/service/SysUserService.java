@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.nicr0n.user.entity.po.RegisterDTO;
 import com.nicr0n.user.entity.po.SysUserDTO;
 import com.nicr0n.user.entity.vo.CurrentUserVO;
+import com.nicr0n.user.entity.vo.SysUserDetailVO;
 
 /**
  * <p>
@@ -27,4 +28,6 @@ public interface SysUserService extends IService<SysUser> {
     boolean updateByUserID(Long id, SysUserDTO sysUserDTO);
 
 	Boolean register(RegisterDTO registerDTO);
+
+	SysUserDetailVO getUserByID(Long id);
 }

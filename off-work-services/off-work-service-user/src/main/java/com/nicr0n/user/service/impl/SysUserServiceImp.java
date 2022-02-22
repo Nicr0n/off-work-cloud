@@ -2,6 +2,7 @@ package com.nicr0n.user.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.jwt.JWTUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -12,6 +13,7 @@ import com.nicr0n.user.entity.SysUserRole;
 import com.nicr0n.user.entity.po.RegisterDTO;
 import com.nicr0n.user.entity.po.SysUserDTO;
 import com.nicr0n.user.entity.vo.CurrentUserVO;
+import com.nicr0n.user.entity.vo.SysUserDetailVO;
 import com.nicr0n.user.mapper.SysUserDao;
 import com.nicr0n.user.service.SysUserRoleService;
 import com.nicr0n.user.service.SysUserService;
@@ -67,7 +69,7 @@ public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implemen
 		// 构造分页类
 		Page<SysUser> sysUserPage = new Page<>(pageParam.getPage(), pageParam.getPerPage());
 		// 分页查询
-		this.page(sysUserPage);
+		this.page(sysUserPage,new QueryWrapper<SysUser>().orderByAsc("user_id"));
 		return sysUserPage;
 	}
 
@@ -102,5 +104,21 @@ public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implemen
 		BeanUtils.copyProperties(registerDTO, sysUser);
 		sysUser.setPassword(new BCryptPasswordEncoder().encode(registerDTO.getPassword()));
 		return this.save(sysUser);
+	}
+
+	@Override
+	public SysUserDetailVO getUserByID(Long id) {
+		SysUser sysUser = this.getById(id);
+		SysUserDetailVO sysUserDetailVO = new SysUserDetailVO();
+		BeanUtils.copyProperties(sysUser,sysUserDetailVO);
+		// 获取用户对应的角色列表
+		sysUserDetailVO.setRoleIDList(userRoleService
+				.list(new LambdaQueryWrapper<SysUserRole>()
+				.eq(SysUserRole::getUserId,id))
+				.stream()
+				.map(SysUserRole::getRoleId)
+				.collect(Collectors.toList())
+		);
+		return sysUserDetailVO;
 	}
 }

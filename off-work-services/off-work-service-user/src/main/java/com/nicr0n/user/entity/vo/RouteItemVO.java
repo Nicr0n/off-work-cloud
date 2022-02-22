@@ -1,36 +1,26 @@
-package com.nicr0n.user.entity;
+package com.nicr0n.user.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.nicr0n.db.handler.TimestamptzTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
- * <p>
- *
- * </p>
- *
- * @author Nicr0n
- * @since 2021/10/19 13:32
+ * @author: Nicr0n
+ * @date: 2022/2/18  6:01
+ * @email: Nicr0nFF@gmail.com
  */
-@Getter
-@Setter
-@TableName(value = "sys_menu", autoResultMap = true)
-@ApiModel(value = "SysMenu对象", description = "")
-public class SysMenu implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+@ApiModel(value = "路由vo")
+@Data
+public class RouteItemVO {
 
 	@ApiModelProperty("菜单ID")
 	@TableId(value = "menu_id", type = IdType.AUTO)
@@ -56,6 +46,11 @@ public class SysMenu implements Serializable {
 	@TableField("component")
 	private String component;
 
+	@ApiModelProperty("重定向地址")
+	@TableField("redirect")
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	private String redirect;
+
 	@ApiModelProperty("路由参数")
 	@TableField("query")
 	private String query;
@@ -70,27 +65,11 @@ public class SysMenu implements Serializable {
 
 	@ApiModelProperty("是否隐藏(false隐藏 true不隐藏)")
 	@TableField("visible_flag")
-	private Boolean visibleFlag;
+	private Boolean hidden;
 
 	@ApiModelProperty("菜单状态(0正常 1停用)")
 	@TableField("status")
 	private Integer status;
-
-	@ApiModelProperty("图标")
-	@TableField("icon")
-	private String icon;
-
-	@ApiModelProperty("是否缓存(false不缓存 true缓存)")
-	@TableField("cache_flag")
-	private Boolean cacheFlag;
-
-	@ApiModelProperty("在侧边栏中显示的标题")
-	@TableField("title")
-	private String title;
-
-	@ApiModelProperty("重定向地址")
-	@TableField("redirect")
-	private String redirect;
 
 	@ApiModelProperty("创建时间")
 	@TableField(value = "create_time", fill = FieldFill.INSERT, typeHandler = TimestamptzTypeHandler.class)
@@ -108,9 +87,11 @@ public class SysMenu implements Serializable {
 	@TableField("update_by")
 	private Long updateBy;
 
-	@ApiModelProperty("删除标志(true删除 false未删除)")
-	@TableField("delete_flag")
-	@TableLogic(value = "false", delval = "true")
-	private Boolean deleteFlag;
+	@ApiModelProperty("额外信息")
+	private MetaVO meta;
+
+	@ApiModelProperty("子路由")
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	private List<RouteItemVO> children;
 
 }
