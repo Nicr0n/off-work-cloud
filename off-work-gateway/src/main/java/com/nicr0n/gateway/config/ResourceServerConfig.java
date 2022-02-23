@@ -2,6 +2,8 @@ package com.nicr0n.gateway.config;
 
 import cn.hutool.core.convert.Convert;
 import com.nicr0n.gateway.auth.AuthorizationManager;
+import com.nicr0n.gateway.handler.CustomAuthenticationEntryPoint;
+import com.nicr0n.gateway.handler.CustomDeniedHandler;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -15,6 +17,8 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
+import org.springframework.security.web.server.authorization.ServerAccessDeniedHandler;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -37,11 +41,24 @@ public class ResourceServerConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http){
         http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtConverter());
+        http.oauth2ResourceServer()
+                .authenticationEntryPoint(serverAuthenticationEntryPoint())
+                .accessDeniedHandler(serverAccessDeniedHandler());
         http.authorizeExchange()
                 .pathMatchers(Convert.toStrArray(whiteList)).permitAll()
                 .anyExchange().access(authorizationManager);
         http.csrf().disable();
         return http.build();
+    }
+
+    @Bean
+    ServerAuthenticationEntryPoint serverAuthenticationEntryPoint(){
+        return new CustomAuthenticationEntryPoint();
+    }
+
+    @Bean
+    ServerAccessDeniedHandler serverAccessDeniedHandler(){
+        return new CustomDeniedHandler();
     }
 
 
