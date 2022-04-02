@@ -1,13 +1,12 @@
 package com.nicr0n.authorization.service.feign;
 
+import com.nicr0n.authorization.entity.po.SysUserDTO;
 import com.nicr0n.feign.constants.FeignConstants;
 import com.nicr0n.feign.entity.po.SysRole;
 import com.nicr0n.feign.entity.po.SysUser;
 import com.nicr0n.swagger.entity.vo.Result;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +29,9 @@ public interface UserCenterService {
 
     @GetMapping("/api/system/role/byUserID")
     Result<List<SysRole>> getRolesByUserID(@RequestParam("id") Long id);
+
+    @PutMapping("/api/system/user/{id}")
+    Result updateUserByID(@PathVariable(value = "id") Long id, @RequestBody SysUserDTO sysUserDTO);
 
 
 }

@@ -1,5 +1,10 @@
 package com.nicr0n.authorization.controller;
 
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import com.nicr0n.authorization.entity.po.SysUserDTO;
+import com.nicr0n.authorization.service.feign.UserCenterService;
+import com.nicr0n.authorization.utils.IPUtils;
 import com.nicr0n.swagger.entity.vo.Result;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -15,9 +20,11 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.KeyPair;
 import java.security.Principal;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -36,6 +43,8 @@ public class AuthController {
 
 	private KeyPair keyPair;
 
+	private UserCenterService userCenterService;
+
 	@ApiOperation(value = "Oauth2认证", notes = "登录入口")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "username", value = "用户名"),
@@ -48,9 +57,15 @@ public class AuthController {
 	})
 	@PostMapping("/token")
 	public OAuth2AccessToken postAccessToken(@ApiIgnore Principal principal,
-											 @RequestParam @ApiIgnore Map<String, String> parameters)
+											 @RequestParam @ApiIgnore Map<String, String> parameters, HttpServletRequest request)
 			throws HttpRequestMethodNotSupportedException {
 		OAuth2AccessToken accessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
+		// 登录成功更新上次登录IP和时间
+		String ip = IPUtils.getClientIP(request);
+		SysUserDTO sysUserDTO = new SysUserDTO();
+		sysUserDTO.setLastLoginIp(ip);
+		sysUserDTO.setLastLoginTime(new Date());
+		userCenterService.updateUserByID(Long.parseLong((String) accessToken.getAdditionalInformation().get("user_id")), sysUserDTO);
 		return accessToken;
 	}
 

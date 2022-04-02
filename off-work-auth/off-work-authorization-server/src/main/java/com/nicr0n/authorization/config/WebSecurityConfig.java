@@ -1,7 +1,6 @@
 package com.nicr0n.authorization.config;
 
 import com.nicr0n.authorization.constants.SecurityConstants;
-import com.nicr0n.authorization.service.CustomUserDetailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

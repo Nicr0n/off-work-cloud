@@ -56,7 +56,7 @@ public class SysRoleController {
 
 	@ApiOperation(value = "列表分页")
 	@GetMapping("/page")
-	public Result<Page<SysRole>> getRolesPage(@RequestParam @Valid PageParam pageParam) {
+	public Result<Page<SysRole>> getRolesPage(@Valid PageParam pageParam) {
 		log.debug("get roles page");
 		return Result.judgeObject(roleService.getRolesPage(pageParam));
 	}

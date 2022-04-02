@@ -1,6 +1,8 @@
 package com.nicr0n.authorization.service;
 
+import com.nicr0n.authorization.entity.po.SysUserDTO;
 import com.nicr0n.authorization.service.feign.UserCenterService;
+import com.nicr0n.authorization.utils.IPUtils;
 import com.nicr0n.feign.entity.po.SysRole;
 import com.nicr0n.feign.entity.po.SysUser;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +46,6 @@ public class CustomUserDetailService implements UserDetailsService {
     protected Set<GrantedAuthority> getRolesByUser(SysUser user) {
         List<SysRole> roleList = userCenterService.getRolesByUserID(user.getUserId()).getData();
         log.info("user:{},roles:{}", user.getUsername(), roleList);
-
         return roleList.stream().map(role -> new SimpleGrantedAuthority(role.getCode())).collect(Collectors.toSet());
     }
 }

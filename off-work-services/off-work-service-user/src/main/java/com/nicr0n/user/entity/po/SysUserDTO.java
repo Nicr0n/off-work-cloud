@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -63,4 +64,12 @@ public class SysUserDTO {
 
     @ApiModelProperty("角色ID列表")
     private List<Long> roleIDList;
+
+    @ApiModelProperty("上次登录IP地址")
+    @TableField("last_login_ip")
+    private String lastLoginIp;
+
+    @ApiModelProperty("上次登录时间")
+    @TableField("last_login_time")
+    private Date lastLoginTime;
 }
