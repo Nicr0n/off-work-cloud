@@ -1,8 +1,7 @@
 package com.nicr0n.user.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -11,16 +10,16 @@ import lombok.Data;
  * @email: Nicr0nFF@gmail.com
  */
 @Data
-@ApiModel(value = "额外信息VO")
+@Schema(description = "额外信息VO")
 public class MetaVO {
-	@ApiModelProperty("在侧边栏中显示的标题")
+	@Schema(description = "在侧边栏中显示的标题")
 	@TableField("title")
 	private String title;
 
-	@ApiModelProperty("图标")
+	@Schema(description = "图标")
 	@TableField("icon")
 	private String icon;
 
-	@ApiModelProperty("缓存标识")
+	@Schema(description = "缓存标识")
 	private Boolean noCache;
 }

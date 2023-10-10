@@ -1,8 +1,7 @@
 package com.nicr0n.user.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,33 +14,33 @@ import javax.validation.constraints.NotBlank;
  */
 @Getter
 @Setter
-@ApiModel(value = "资源DTO")
+@Schema(description = "资源DTO")
 public class SysResourceDTO {
 
-	@ApiModelProperty("资源名称")
+	@Schema(description = "资源名称")
 	@TableField("name")
 	@NotBlank
 	private String name;
 
-	@ApiModelProperty("关联菜单，方便编辑权限")
+	@Schema(description = "关联菜单，方便编辑权限")
 	@TableField("menu_id")
 	private Long menuId;
 
-	@ApiModelProperty("HTTP Method")
+	@Schema(description = "HTTP Method")
 	@TableField("method")
 	@NotBlank
 	private String method;
 
-	@ApiModelProperty("前端权限标识")
+	@Schema(description = "前端权限标识")
 	@TableField("permission")
 	private String permission;
 
-	@ApiModelProperty("url地址")
+	@Schema(description = "url地址")
 	@TableField("url")
 	@NotBlank
 	private String url;
 
-	@ApiModelProperty("简介")
+	@Schema(description = "简介")
 	@TableField("description")
 	private String description;
 }

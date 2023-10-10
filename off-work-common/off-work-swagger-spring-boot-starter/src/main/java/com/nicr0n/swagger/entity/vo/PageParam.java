@@ -1,7 +1,6 @@
 package com.nicr0n.swagger.entity.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -9,13 +8,13 @@ import lombok.Data;
  * @date: 2021/12/16    16:01
  * @email: Nicr0nFF@gmail.com
  */
-@ApiModel("分页PO")
+@Schema(description = "分页VO")
 @Data
 public class PageParam {
 
-    @ApiModelProperty(value = "页码",required = true)
+    @Schema(description = "页数",requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer page;
 
-    @ApiModelProperty(value = "每页数量",required = true)
+    @Schema(description = "每页数量",requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer perPage;
 }

@@ -2,12 +2,12 @@ package com.nicr0n.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -20,17 +20,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @TableName("sys_role_menu")
-@ApiModel(value = "SysRoleMenu对象", description = "")
+@Schema(description = "SysRoleMenu对象")
 @AllArgsConstructor
 public class SysRoleMenu implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("角色ID")
+    @Schema(description = "角色ID")
     @TableField("role_id")
     private Long roleId;
 
-    @ApiModelProperty("菜单ID")
+    @Schema(description = "菜单ID")
     @TableField("menu_id")
     private Long menuId;
 }

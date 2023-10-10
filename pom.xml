@@ -36,7 +36,7 @@
         <mysql.version>8.1.0</mysql.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <druid.version>1.2.8</druid.version>
-        <knife4j.version>2.0.9</knife4j.version>
+        <knife4j.version>4.3.0</knife4j.version>
         <hutool.version>5.7.14</hutool.version>
         <jjwt.version>0.9.1</jjwt.version>
     </properties>
@@ -198,7 +198,7 @@
 
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-micro-spring-boot-starter</artifactId>
+                <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
             </dependency>
 

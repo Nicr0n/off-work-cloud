@@ -1,19 +1,13 @@
 package com.nicr0n.user.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * <p>
@@ -26,93 +20,93 @@ import lombok.Setter;
 @Getter
 @Setter
 @TableName("sys_user")
-@ApiModel(value = "SysUser对象", description = "")
+@Schema(description = "SysUser对象")
 public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("用户ID")
+    @Schema(description = "用户ID")
     @TableId(value = "user_id", type = IdType.AUTO)
     private Long userId;
 
-    @ApiModelProperty("用户名")
+    @Schema(description = "用户名")
     @TableField("username")
     private String username;
 
-    @ApiModelProperty("密码")
+    @Schema(description = "密码")
     @TableField("password")
     private String password;
 
-    @ApiModelProperty("手机号")
+    @Schema(description = "手机号")
     @TableField("telephone")
     private String telephone;
 
-    @ApiModelProperty("open_id")
+    @Schema(description = "open_id")
     @TableField("open_id")
     private String openId;
 
-    @ApiModelProperty("部门ID")
+    @Schema(description = "部门ID")
     @TableField("department_id")
     private Long departmentId;
 
-    @ApiModelProperty("职位ID")
+    @Schema(description = "职位ID")
     @TableField("position_id")
     private Long positionId;
 
-    @ApiModelProperty("昵称")
+    @Schema(description = "昵称")
     @TableField("nick_name")
     private String nickName;
 
-    @ApiModelProperty("真实姓名")
+    @Schema(description = "真实姓名")
     @TableField("real_name")
     private String realName;
 
-    @ApiModelProperty("头像url")
+    @Schema(description = "头像url")
     @TableField("avatar_url")
     private String avatarUrl;
 
-    @ApiModelProperty("性别")
+    @Schema(description = "性别")
     @TableField("gender")
     private Integer gender;
 
-    @ApiModelProperty("email")
+    @Schema(description = "email")
     @TableField("email")
     private String email;
 
-    @ApiModelProperty("生日")
+    @Schema(description = "生日")
     @TableField("birthday")
     private LocalDate birthday;
 
-    @ApiModelProperty("账户状态（0正常 1停用)")
+    @Schema(description = "账户状态（0正常 1停用)")
     @TableField("status")
     private Integer status;
 
-    @ApiModelProperty("删除标志(true删除 false未删除)")
+    @Schema(description = "删除标志(true删除 false未删除)")
     @TableField("delete_flag")
     @TableLogic
     private Byte deleteFlag;
 
-    @ApiModelProperty("上次登录IP地址")
+    @Schema(description = "上次登录IP地址")
     @TableField("last_login_ip")
     private String lastLoginIp;
 
-    @ApiModelProperty("上次登录时间")
+    @Schema(description = "上次登录时间")
     @TableField("last_login_time")
     private LocalDateTime lastLoginTime;
 
-    @ApiModelProperty("创建时间")
+    @Schema(description = "创建时间")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @ApiModelProperty("创建人ID")
+    @Schema(description = "创建人ID")
     @TableField("create_by")
     private Long createBy;
 
-    @ApiModelProperty("修改时间")
+    @Schema(description = "修改时间")
     @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
-    @ApiModelProperty("修改人ID")
+    @Schema(description = "修改人ID")
     @TableField("update_by")
     private Integer updateBy;
 }

@@ -1,8 +1,7 @@
 package com.nicr0n.authorization.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -15,17 +14,17 @@ import java.util.Date;
  * @email: Nicr0nFF@gmail.com
  */
 
-@ApiModel("用户登录DTO")
+@Schema(description = "用户登录DTO")
 @Data
 @ToString
 @NoArgsConstructor
 public class SysUserDTO {
 
-	@ApiModelProperty("上次登录IP地址")
+	@Schema(description = "上次登录IP地址")
 	@TableField("last_login_ip")
 	private String lastLoginIp;
 
-	@ApiModelProperty("上次登录时间")
+	@Schema(description = "上次登录时间")
 	@TableField("last_login_time")
 	private Date lastLoginTime;
 }

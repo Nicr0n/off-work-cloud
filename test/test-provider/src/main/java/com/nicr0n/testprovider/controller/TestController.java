@@ -1,6 +1,6 @@
 package com.nicr0n.testprovider.controller;
 
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @email: Nicr0nFF@gmail.com
  */
 @RestController
-@Api(tags = "提供者测试")
+@Tag(name = "提供者测试")
 public class TestController {
 
     @GetMapping("/hiProvider")

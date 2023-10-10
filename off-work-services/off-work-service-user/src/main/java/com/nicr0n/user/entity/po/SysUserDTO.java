@@ -1,8 +1,7 @@
 package com.nicr0n.user.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,58 +17,58 @@ import java.util.List;
  */
 @Getter
 @Setter
-@ApiModel(value = "用户修改DTO")
+@Schema(description = "用户修改DTO")
 public class SysUserDTO {
 
-    @ApiModelProperty("部门ID")
+    @Schema(description = "部门ID")
     @TableField("department_id")
     private Integer departmentId;
 
-    @ApiModelProperty("职位ID")
+    @Schema(description = "职位ID")
     @TableField("position_id")
     private Integer positionId;
 
-    @ApiModelProperty("昵称")
+    @Schema(description = "昵称")
     @TableField("nick_name")
     private String nickName;
 
-    @ApiModelProperty("真实姓名")
+    @Schema(description = "真实姓名")
     @TableField("name")
     private String name;
 
-    @ApiModelProperty("手机号")
+    @Schema(description = "手机号")
     @TableField("telephone")
     private String telephone;
 
-    @ApiModelProperty("头像url")
+    @Schema(description = "头像url")
     @TableField("avatar_url")
     private String avatarUrl;
 
-    @ApiModelProperty("性别")
+    @Schema(description = "性别")
     @TableField("gender")
     private Integer gender;
 
-    @ApiModelProperty("邮箱")
+    @Schema(description = "邮箱")
     @TableField("email")
     private String email;
 
-    @ApiModelProperty("生日")
+    @Schema(description = "生日")
     @TableField("birthday")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
-    @ApiModelProperty("账户状态（0正常 1停用)")
+    @Schema(description = "账户状态（0正常 1停用)")
     @TableField("status")
     private Integer status;
 
-    @ApiModelProperty("角色ID列表")
+    @Schema(description = "角色ID列表")
     private List<Long> roleIDList;
 
-    @ApiModelProperty("上次登录IP地址")
+    @Schema(description = "上次登录IP地址")
     @TableField("last_login_ip")
     private String lastLoginIp;
 
-    @ApiModelProperty("上次登录时间")
+    @Schema(description = "上次登录时间")
     @TableField("last_login_time")
     private Date lastLoginTime;
 }

@@ -1,8 +1,6 @@
 package com.nicr0n.gateway.entity.vo;
 
 import com.nicr0n.gateway.constants.StatusCodeEnum;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.time.Instant;
@@ -14,26 +12,20 @@ import java.time.ZonedDateTime;
  * @email: Nicr0nFF@gmail.com
  */
 @Data
-@ApiModel(description = "RESTful通用返回模型")
 public class Result<T> {
 
 	private final static String SUCCESS = "成功";
 
 	private final static String FAILED = "失败";
 
-	@ApiModelProperty(value = "状态标志，true成功，false失败", required = true)
 	private Boolean status_flag;
 
-	@ApiModelProperty(value = "HTTP请求状态码", required = true)
 	private String code;
 
-	@ApiModelProperty(value = "请求结果消息")
 	private String message;
 
-	@ApiModelProperty(value = "请求时间")
 	private Instant time;
 
-	@ApiModelProperty(value = "请求结果数据")
 	private T data;
 
 	public Result() {
