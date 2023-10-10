@@ -19,11 +19,11 @@ import lombok.Setter;
  * </p>
  *
  * @author Nicr0n
- * @since 2021/10/19 13:32
+ * @since 2023/10/09 05:50
  */
 @Getter
 @Setter
-@TableName(value = "sys_department",autoResultMap = true)
+@TableName("sys_department")
 @ApiModel(value = "SysDepartment对象", description = "")
 public class SysDepartment implements Serializable {
 
@@ -38,8 +38,8 @@ public class SysDepartment implements Serializable {
     private Long parentId;
 
     @ApiModelProperty("部门名称")
-    @TableField("name")
-    private String name;
+    @TableField("department_name")
+    private String departmentName;
 
     @ApiModelProperty("部门排序")
     @TableField("sort")
@@ -53,7 +53,7 @@ public class SysDepartment implements Serializable {
     @TableField("telephone")
     private String telephone;
 
-    @ApiModelProperty("邮箱地址")
+    @ApiModelProperty("email")
     @TableField("email")
     private String email;
 
@@ -63,24 +63,22 @@ public class SysDepartment implements Serializable {
 
     @ApiModelProperty("删除标志(true删除 false未删除)")
     @TableField("delete_flag")
-    @TableLogic(value = "false",delval = "true")
+    @TableLogic
     private Boolean deleteFlag;
 
     @ApiModelProperty("创建时间")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @ApiModelProperty("创建时间")
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateTime;
-
     @ApiModelProperty("创建人ID")
     @TableField("create_by")
     private Long createBy;
 
+    @ApiModelProperty("修改时间")
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
+    private LocalDateTime updateTime;
+
     @ApiModelProperty("修改人ID")
     @TableField("update_by")
-    private Long updateBy;
-
-
+    private LocalDateTime updateBy;
 }

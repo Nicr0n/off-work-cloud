@@ -1,7 +1,6 @@
 package com.nicr0n.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -15,7 +14,7 @@ import lombok.Setter;
  * </p>
  *
  * @author Nicr0n
- * @since 2022/01/26 13:58
+ * @since 2023/10/09 05:50
  */
 @Getter
 @Setter
@@ -32,6 +31,4 @@ public class SysRoleResource implements Serializable {
     @ApiModelProperty("资源ID")
     @TableField("resource_id")
     private Long resourceId;
-
-
 }

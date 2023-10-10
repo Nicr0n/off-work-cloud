@@ -36,7 +36,7 @@ public class ResourceServerConfig {
     private AuthorizationManager authorizationManager;
 
     @Setter
-    private List<String> whiteList;
+    private List<String> whitelist;
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http){
@@ -45,7 +45,7 @@ public class ResourceServerConfig {
                 .authenticationEntryPoint(serverAuthenticationEntryPoint())
                 .accessDeniedHandler(serverAccessDeniedHandler());
         http.authorizeExchange()
-                .pathMatchers(Convert.toStrArray(whiteList)).permitAll()
+                .pathMatchers(Convert.toStrArray(whitelist)).permitAll()
                 .anyExchange().access(authorizationManager);
         http.csrf().disable();
         return http.build();

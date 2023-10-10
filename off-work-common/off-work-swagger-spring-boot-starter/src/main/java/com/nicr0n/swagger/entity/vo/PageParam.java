@@ -1,6 +1,5 @@
 package com.nicr0n.swagger.entity.vo;
 
-import com.sun.istack.internal.NotNull;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,10 +14,8 @@ import lombok.Data;
 public class PageParam {
 
     @ApiModelProperty(value = "页码",required = true)
-    @NotNull
     private Integer page;
 
     @ApiModelProperty(value = "每页数量",required = true)
-    @NotNull
     private Integer perPage;
 }

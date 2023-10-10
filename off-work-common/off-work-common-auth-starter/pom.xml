@@ -12,7 +12,8 @@
     <artifactId>off-work-common-auth-starter</artifactId>
     <packaging>jar</packaging>
     <properties>
-
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
         <!--oauth2认证-->

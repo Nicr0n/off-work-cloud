@@ -25,3 +25,5 @@ build/
 !**/src/test/**/build/
 
 /test/.mvn/
+DockerFile
+*,jar

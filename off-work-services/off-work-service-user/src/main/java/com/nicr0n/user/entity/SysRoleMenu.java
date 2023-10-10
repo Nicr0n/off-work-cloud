@@ -15,7 +15,7 @@ import lombok.Setter;
  * </p>
  *
  * @author Nicr0n
- * @since 2021/10/19 13:32
+ * @since 2023/10/09 05:50
  */
 @Getter
 @Setter
@@ -27,12 +27,10 @@ public class SysRoleMenu implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("角色ID")
-    @TableField(value = "role_id")
+    @TableField("role_id")
     private Long roleId;
 
     @ApiModelProperty("菜单ID")
-    @TableField(value = "menu_id")
+    @TableField("menu_id")
     private Long menuId;
-
-
 }
