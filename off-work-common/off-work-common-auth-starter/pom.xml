@@ -11,14 +11,18 @@
 
     <artifactId>off-work-common-auth-starter</artifactId>
     <packaging>jar</packaging>
-    <properties>
 
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
     <dependencies>
         <!--oauth2认证-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-authorization-server</artifactId>
+            <version>${spring.authorization.version}</version>
         </dependency>
         <!-- spring-security-oauth2-jose -->
         <dependency>
@@ -28,7 +32,7 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
+            <version>0.12.1</version>
         </dependency>
     </dependencies>
 

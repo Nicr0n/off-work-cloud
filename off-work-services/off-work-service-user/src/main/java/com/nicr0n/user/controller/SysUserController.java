@@ -29,7 +29,7 @@ import javax.validation.Valid;
  */
 @Api(tags = "用户管理")
 @RestController
-@RequestMapping("/api/system/user")
+@RequestMapping("/system/user")
 @Slf4j
 public class SysUserController {
 

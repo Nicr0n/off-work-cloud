@@ -29,7 +29,7 @@ import java.util.Set;
  */
 @Api(tags = "权限管理")
 @RestController
-@RequestMapping("/api/system/resource")
+@RequestMapping("/system/resource")
 @Slf4j
 public class SysResourceController {
 

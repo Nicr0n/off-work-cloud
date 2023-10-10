@@ -1,19 +1,23 @@
 package com.nicr0n.authorization.config;
 
-import com.nicr0n.authorization.constants.SecurityConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
+import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * @author: Nicr0n
@@ -23,51 +27,40 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @Slf4j
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig{
 
     @Autowired
     @Qualifier("customUserDetailService")
     UserDetailsService userDetailsService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers(
-                        // 放行验证接口
-                        "/oauth/**",
-                        "/swagger-resources/**",
-                        "/v2/**",
-                        "/webjars/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-             .formLogin()
-                .permitAll()
-                .and()
-             .logout()
-                .logoutUrl(SecurityConstants.LOGOUT_URI)
-                .and()
-             .csrf()
-                .disable();
+    @Bean
+    protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(auth->auth.requestMatchers("/oauth/**").permitAll()
+                        .requestMatchers("/swagger-resources/**").permitAll()
+                        .requestMatchers("/v2/**").permitAll()
+                        .requestMatchers("/webjars/**").permitAll()
+                )
+                .formLogin(form-> form.permitAll())
+                .csrf(csrf->csrf.disable());
+        return http.build();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+    @Bean
+    protected AuthenticationProvider authenticationProvider( ){
+        DaoAuthenticationProvider authenticationProvider =new DaoAuthenticationProvider();
+        //自定义获取userDtails
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        return authenticationProvider;
     }
 
     /**
-     * 密码模式下必须注入的bean authenticationManagerBean 否则SpringBoot会自动配置一个AuthenticationManager,覆盖掉内存中的用户
      * 认证是由 AuthenticationManager 来管理的，
      * 但是真正进行认证的是 AuthenticationManager 中定义的AuthenticationProvider。
      * AuthenticationManager 中可以定义有多个 AuthenticationProvider
      */
     @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean

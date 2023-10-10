@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Api(tags = "菜单管理")
 @RestController
-@RequestMapping("/api/system/menu")
+@RequestMapping("/system/menu")
 @RequiredArgsConstructor
 @Slf4j
 public class SysMenuController {

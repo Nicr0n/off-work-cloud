@@ -60,7 +60,7 @@ public class SysUserServiceImp extends ServiceImpl<SysUserDao, SysUser> implemen
 		}
 		SysUser sysUser = this.getById(userID);
 		BeanUtils.copyProperties(sysUser, currentUserVO);
-		currentUserVO.setRoles(userRoleService.getRolesByUserID(userID).stream().map(SysRole::getName).collect(Collectors.toList()));
+		currentUserVO.setRoles(userRoleService.getRolesByUserID(userID).stream().map(SysRole::getRoleName).collect(Collectors.toList()));
 		return currentUserVO;
 	}
 

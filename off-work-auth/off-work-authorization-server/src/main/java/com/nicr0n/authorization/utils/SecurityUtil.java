@@ -2,7 +2,6 @@ package com.nicr0n.authorization.utils;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 
 /**
  * @author: Nicr0n

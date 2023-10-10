@@ -24,13 +24,13 @@ public interface UserCenterService {
      * @param username 用户名
      * @return
      */
-    @GetMapping("/api/system/user/byUsername")
+    @GetMapping("/system/user/byUsername")
     Result<SysUser> getUserByUserName(@RequestParam("username") String username);
 
-    @GetMapping("/api/system/role/byUserID")
+    @GetMapping("/system/role/byUserID")
     Result<List<SysRole>> getRolesByUserID(@RequestParam("id") Long id);
 
-    @PutMapping("/api/system/user/{id}")
+    @PutMapping("/system/user/{id}")
     Result updateUserByID(@PathVariable(value = "id") Long id, @RequestBody SysUserDTO sysUserDTO);
 
 

@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.nicr0n.db.handler.TimestamptzTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -72,7 +71,7 @@ public class RouteItemVO {
 	private Integer status;
 
 	@ApiModelProperty("创建时间")
-	@TableField(value = "create_time", fill = FieldFill.INSERT, typeHandler = TimestamptzTypeHandler.class)
+	@TableField(value = "create_time", fill = FieldFill.INSERT)
 	private LocalDateTime createTime;
 
 	@ApiModelProperty("创建人ID")
@@ -80,7 +79,7 @@ public class RouteItemVO {
 	private Long createBy;
 
 	@ApiModelProperty("修改时间")
-	@TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE, typeHandler = TimestamptzTypeHandler.class)
+	@TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
 	private LocalDateTime updateTime;
 
 	@ApiModelProperty("修改人ID")

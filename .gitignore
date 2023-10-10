@@ -25,3 +25,7 @@ build/
 !**/src/test/**/build/
 
 /test/.mvn/
+
+/off-work-mbg
+
+*.yml

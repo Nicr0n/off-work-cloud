@@ -6,43 +6,36 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nicr0n.db.handler.TimestamptzTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author Nicr0n
- * @since 2021/10/19 13:32
+ * @since 2023/10/09 05:50
  */
 @Getter
 @Setter
-//重要 TableName注解必须增加 autoResultMap = true 否则无法处理typeHandler
-@TableName(value = "sys_user", autoResultMap = true)
+@TableName("sys_user")
 @ApiModel(value = "SysUser对象", description = "")
 public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("id")
+    @ApiModelProperty("用户ID")
     @TableId(value = "user_id", type = IdType.AUTO)
     private Long userId;
 
     @ApiModelProperty("用户名")
-    @TableField(value = "username")
+    @TableField("username")
     private String username;
 
     @ApiModelProperty("密码")
@@ -59,19 +52,19 @@ public class SysUser implements Serializable {
 
     @ApiModelProperty("部门ID")
     @TableField("department_id")
-    private Integer departmentId;
+    private Long departmentId;
 
     @ApiModelProperty("职位ID")
     @TableField("position_id")
-    private Integer positionId;
+    private Long positionId;
 
     @ApiModelProperty("昵称")
     @TableField("nick_name")
     private String nickName;
 
     @ApiModelProperty("真实姓名")
-    @TableField("name")
-    private String name;
+    @TableField("real_name")
+    private String realName;
 
     @ApiModelProperty("头像url")
     @TableField("avatar_url")
@@ -81,13 +74,12 @@ public class SysUser implements Serializable {
     @TableField("gender")
     private Integer gender;
 
-    @ApiModelProperty("邮箱")
+    @ApiModelProperty("email")
     @TableField("email")
     private String email;
 
     @ApiModelProperty("生日")
     @TableField("birthday")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
     @ApiModelProperty("账户状态（0正常 1停用)")
@@ -96,8 +88,8 @@ public class SysUser implements Serializable {
 
     @ApiModelProperty("删除标志(true删除 false未删除)")
     @TableField("delete_flag")
-    @TableLogic(value = "false", delval = "true")
-    private Boolean deleteFlag;
+    @TableLogic
+    private Byte deleteFlag;
 
     @ApiModelProperty("上次登录IP地址")
     @TableField("last_login_ip")
@@ -105,10 +97,10 @@ public class SysUser implements Serializable {
 
     @ApiModelProperty("上次登录时间")
     @TableField("last_login_time")
-    private Date lastLoginTime;
+    private LocalDateTime lastLoginTime;
 
     @ApiModelProperty("创建时间")
-    @TableField(value = "create_time", fill = FieldFill.INSERT, typeHandler = TimestamptzTypeHandler.class)
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     @ApiModelProperty("创建人ID")
@@ -116,12 +108,10 @@ public class SysUser implements Serializable {
     private Long createBy;
 
     @ApiModelProperty("修改时间")
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE, typeHandler = TimestamptzTypeHandler.class)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
     @ApiModelProperty("修改人ID")
     @TableField("update_by")
-    private Long updateBy;
-
-
+    private Integer updateBy;
 }

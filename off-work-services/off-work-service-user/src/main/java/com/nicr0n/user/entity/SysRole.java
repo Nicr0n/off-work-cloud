@@ -8,8 +8,6 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
-import com.nicr0n.db.handler.TimestamptzTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -21,12 +19,11 @@ import lombok.Setter;
  * </p>
  *
  * @author Nicr0n
- * @since 2021/10/19 13:32
+ * @since 2023/10/09 05:50
  */
 @Getter
 @Setter
-//重要 TableName注解必须增加 autoResultMap = true 否则无法处理typeHandler
-@TableName(value = "sys_role",autoResultMap = true)
+@TableName("sys_role")
 @ApiModel(value = "SysRole对象", description = "")
 public class SysRole implements Serializable {
 
@@ -37,8 +34,8 @@ public class SysRole implements Serializable {
     private Long roleId;
 
     @ApiModelProperty("角色名称")
-    @TableField(value = "name")
-    private String name;
+    @TableField("role_name")
+    private String roleName;
 
     @ApiModelProperty("角色权限code")
     @TableField("code")
@@ -46,11 +43,11 @@ public class SysRole implements Serializable {
 
     @ApiModelProperty("角色排序")
     @TableField("sort")
-    private Integer sort;
+    private String sort;
 
     @ApiModelProperty("角色数据作用域")
     @TableField("scope")
-    private Integer scope;
+    private String scope;
 
     @ApiModelProperty("角色描述")
     @TableField("description")
@@ -60,13 +57,8 @@ public class SysRole implements Serializable {
     @TableField("status")
     private Integer status;
 
-    @ApiModelProperty("删除标志(true删除 false未删除)")
-    @TableField("delete_flag")
-    @TableLogic(value = "false",delval = "true")
-    private Boolean deleteFlag;
-
     @ApiModelProperty("创建时间")
-    @TableField(value = "create_time", fill = FieldFill.INSERT,typeHandler = TimestamptzTypeHandler.class)
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     @ApiModelProperty("创建人ID((为NULL则是系统创建))")
@@ -74,12 +66,15 @@ public class SysRole implements Serializable {
     private Long createBy;
 
     @ApiModelProperty("修改时间")
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE,typeHandler = TimestamptzTypeHandler.class)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
     @ApiModelProperty("修改人ID(为NULL则是系统创建)")
     @TableField("update_by")
     private Long updateBy;
 
-
+    @ApiModelProperty("删除标志(true删除 false未删除)")
+    @TableField("delete_flag")
+    @TableLogic
+    private Boolean deleteFlag;
 }

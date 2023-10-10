@@ -1,7 +1,6 @@
 package com.nicr0n.user.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.nicr0n.db.handler.TimestamptzTypeHandler;
 import com.nicr0n.user.entity.SysMenu;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -52,7 +51,7 @@ public class SysRoleVO {
 	private Boolean deleteFlag;
 
 	@ApiModelProperty("创建时间")
-	@TableField(value = "create_time", fill = FieldFill.INSERT,typeHandler = TimestamptzTypeHandler.class)
+	@TableField(value = "create_time", fill = FieldFill.INSERT)
 	private LocalDateTime createTime;
 
 	@ApiModelProperty("创建人ID((为NULL则是系统创建))")
@@ -60,7 +59,7 @@ public class SysRoleVO {
 	private Long createBy;
 
 	@ApiModelProperty("修改时间")
-	@TableField(value = "update_time", fill = FieldFill.UPDATE,typeHandler = TimestamptzTypeHandler.class)
+	@TableField(value = "update_time", fill = FieldFill.UPDATE)
 	private LocalDateTime updateTime;
 
 	@ApiModelProperty("修改人ID(为NULL则是系统创建)")

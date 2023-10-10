@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class MybatisPlusGenerator {
     public static void main(String[] args) {
-        FastAutoGenerator.create("jdbc:postgresql://localhost:5432/system","offWorkCloud","123456")
+        FastAutoGenerator.create("jdbc:mysql://193.111.31.36:3306/offWorkCloud","root","Nicron1998")
                 // 全局配置
                 .globalConfig(builder -> builder.author("Nicr0n")
                         .fileOverride()

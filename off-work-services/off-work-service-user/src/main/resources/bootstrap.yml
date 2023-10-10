@@ -8,6 +8,8 @@ spring:
       discovery:  #发现中心
         server-addr: your.ip.address  #nacos地址
         group: OFF_WORK_CLOUD  #分组名
+        username: nacos
+        password: Nicron1998
       config:  #配置中心
         server-addr: your.ip.address  #nacos地址
         file-extension: yml  #配置文件类型

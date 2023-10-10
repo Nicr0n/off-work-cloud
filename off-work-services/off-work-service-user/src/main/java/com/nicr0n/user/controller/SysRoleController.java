@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Api(tags = "角色管理")
 @RestController
-@RequestMapping("/api/system/role")
+@RequestMapping("/system/role")
 @Slf4j
 public class SysRoleController {
 
